@@ -1,10 +1,10 @@
 // Defining 2 SQL collections. The additional paramater is the postgres connection string which will only run on the server
 tasks = new SQL.Collection('tasks', 'postgres://postgres:pass@localhost/meteor');
 username = new SQL.Collection('username', 'postgres://postgres:pass@localhost/meteor');
-//test
+
 
   var newUser = '';
-  
+    
   var taskTable = {
     id: ['$number'],
     text: ['$string', '$notnull'],
