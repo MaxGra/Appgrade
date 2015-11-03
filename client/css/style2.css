@@ -1,0 +1,176 @@
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+/* BASIC HTML TAGS*/
+html,body { height: 100%; margin: 0px; padding: 0px; }
+
+body{
+	background-color: #EFEFEF;
+}
+
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+/* IDs */
+#login_panel {
+	width: 90%;
+	max-width: 600px;
+	
+	
+	margin: auto;
+	
+	
+	/*
+		ALIGN VERTICALLY CENTERED
+		
+		http://stackoverflow.com/questions/18649106/div-vertical-align-middle-css
+	*/
+	position: relative;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+ 	transform: translateY(-50%);
+}
+
+	#login_panel * {
+		display: block;
+		
+		text-align: center;
+		
+		margin: auto;
+		margin-bottom: 30px;
+	}
+		
+	#login_panel:last-child {
+		padding-bottom: 10px;
+	}
+	
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+/* CLASSES */
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+	
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+/* BOOTSTRAP SPECIFIC */
+.navbar-nav a {
+	color: #58595B;
+}
+
+.navbar-nav a:link {
+	color: #58595B;
+}
+
+.active a{
+	background-color: #b90000;
+	color: #ffffff;
+}
+
+.active a:link {
+	color: #ffffff;
+}
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+/* APPGRADE SPECIFIC, e.g. color theme */
+
+
+/* certain red for the theme */
+.ag_red {
+	color: #b90000;
+}
+
+/* button style */
+.ag_button {
+	border-style: solid;
+	border-width: 1px;
+	
+	border-radius: 30px;
+	min-width: 150px;
+	
+	border-color: #b90000;
+	color: #b90000;
+	background-color: transparent;
+	
+	padding: 15px 10px 15px 10px;
+}
+
+	.ag_button:hover {
+		color: #ffffff;
+		background-color: #b90000;
+	}
+	
+/* textfield style */
+.ag_textfield {
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 50px;
+	
+	border-color: #c0c0c0;
+	
+	text-align: center;
+	
+	padding: 15px 5px 15px 5px;
+}
+
+
+/* navbar */
+.ag_navbar {
+	border-style: solid;
+	border-width: 0px 0px 1px 0px;
+	border-color: #CDCDCD;
+	border-radius: 0px;
+	
+	
+	background-color: #ffffff;
+	margin: 0px;
+	padding: 0px;
+}
+
+.ag_navbar a:link {
+	color: #58595B;
+}
+
+.ag_navbar a:hover {
+	color: #58595B;
+}
+
+.ag_navbar .active {
+	background-color: #b90000;
+	color: #ffffff;
+}
+
+.ag_navbar .active a:link {
+	color: #ffffff;
+}
+
+.navbar-toggle {
+	border-style: solid;
+	border-width: 1px;
+	border-color: #b90000;
+	
+	background-color: transparend;
+}
+
+	.navbar-toggle:hover {
+		background-color: #b90000;
+	}
+	
+	.ag_button-bar {
+		background-color: #b90000;
+	}
+		.navbar-toggle:hover .ag_button-bar {
+			background-color: #ffffff;
+		}
+
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+/* FUNCTIONS / BEHAVIOURS */
+
+.fnc_stretch {
+	width: 90%;
+}
+
+.fnc_spacer_30 {
+	height: 10px;
+}
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */

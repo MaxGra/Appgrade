@@ -1,0 +1,26 @@
+<template name="main">
+    <nav class="navbar ag_navbar">
+			<div class="container-fluid">
+			    <div class="navbar-header">
+                    <a class="navbar-brand" href="#"><span class="ag_red">AppGrade</span></a>
+			    	
+			    	<button type="button" class="navbar-toggle collapsed ag_nav-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+			    		<span class="sr-only">Toggle navigation</span>
+					    <span class="icon-bar ag_button-bar"></span>
+					    <span class="icon-bar ag_button-bar"></span>
+					    <span class="icon-bar ag_button-bar"></span>
+					</button>
+			    </div>
+			    <!-- NAV-BAR: MENU -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				    <ul class="nav navbar-nav">
+						<li class="active"><a href="#"><span class="glyphicon glyphicon-user"></span> Mein Profil</a></li>
+						<li><a href="#"><span class="glyphicon glyphicon-exclamation-sign"></span> Zu Erledigen</a></li>
+						<li><a href="#"><span class="glyphicon glyphicon-blackboard"></span> Kurse</a></li>
+						<li><a href="#"><span class="glyphicon glyphicon-font"></span> Noten</a></li>
+				    </ul>
+				</div>
+			</div>
+		</nav>
+    {{> yield}}
+</template>
