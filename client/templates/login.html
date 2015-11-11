@@ -2,9 +2,13 @@
   <div id="login_panel" style="margin-top: -30px;">
 			<span class="fnc_spacer_30"></span>
 			<h3>Login mit Moodle-Account</h3>
-			
-			<input type="text" placeholder="Benutzername" class="ag_textfield fnc_stretch"/>
-			<input type="password" placeholder="Passwort" class="ag_textfield fnc_stretch"/>
-			<button type="button" class="ag_button">login</button>
+			<form>
+                <input type="text" placeholder="Benutzername" class="ag_textfield fnc_stretch" name="loginUsername"/>
+                <input type="password" placeholder="Passwort" class="ag_textfield fnc_stretch" name="loginPassword"/>
+                <input type="submit" value="Login" class="ag_button"/>
+                {{#if attributes }}
+                <p>{{ attributes }}</p>
+                {{/if}}
+            </form>
 		</div>
 </template>

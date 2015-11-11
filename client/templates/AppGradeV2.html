@@ -1,13 +1,7 @@
-<head>
-  <title>Todo List</title>
-</head>
-
-
-<body>
+<template name="test">
   <div class="container">
     <header>
       <h1>Todo List</h1>
-        {{> test}}
       <form class="new-user">
         <input type="text" name="text" placeholder="Type to add new user" />
           <div class="menu">
@@ -28,12 +22,11 @@
     <ul>
       {{ #each tasks }}
         <li>{{ text }}</li>
-       <!-- {{> task}} -->
+        <!--{{> task}} -->
       {{ /each }}
     </ul>
   </div>
   
-</body>
 
 <!-- replace the existing task template with this code 
 <template name="task">
@@ -43,6 +36,5 @@
     <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
 
     <span class="text">{{text}} - {{name}}</span>
-  </li>
+  </li>-->
 </template>
--->

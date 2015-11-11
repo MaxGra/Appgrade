@@ -21,3 +21,6 @@ storeness:meteor-postgres
 meteorsteam:meteor-postgres
 iron:router
 twbs:bootstrap
+raynes:accounts-pg
+accounts-base
+accounts-password

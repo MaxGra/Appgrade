@@ -1,19 +1,34 @@
 Router.route('/',{
-    name: 'home',
-    template: 'main'
-});
-
-Router.route('/items',{
-    name: 'items',
-    template: 'items'
-});
-
-Router.route('/login',{
+    template: 'login',
     name: 'login',
-    template: 'login'
+    onBeforeAction: function(){
+        var currentUser = Meteor.userId();
+        if(currentUser){
+            this.render("main");
+        } else {
+            this.next();
+        }
+    }
 });
 
-Router.configure({
-    layoutTemplate: 'main'
+Router.route('/register', function () {
+    this.render('register');
 });
 
+Router.route('/test', function () {
+    this.render('test');
+    this.layout('main');
+});
+
+Router.route('/main',{
+    template: 'main',
+    name: 'main',
+    onBeforeAction: function(){
+        var currentUser = Meteor.userId();
+        if(currentUser){
+            this.next();
+        } else {
+            this.render("login");
+        }
+    }
+});

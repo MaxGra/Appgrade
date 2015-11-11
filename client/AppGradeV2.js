@@ -3,6 +3,7 @@ tasks = new SQL.Collection('tasks', 'postgres://postgres:pass@localhost/meteor')
 username = new SQL.Collection('username', 'postgres://postgres:pass@localhost/meteor');
 
 
+
   var newUser = '';
     
   var taskTable = {
