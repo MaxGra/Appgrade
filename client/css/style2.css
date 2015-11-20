@@ -6,7 +6,28 @@ body{
 	background-color: #EFEFEF;
 }
 
+th {
+	text-align: center;
+}
+
+td {
+	text-align: center;
+}
+
+th span {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal; 
+}
+
+
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+
+
+
+
+
+
 
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 /* IDs */
@@ -43,11 +64,69 @@ body{
 		padding-bottom: 10px;
 	}
 	
+#gradetable_panel {
+	width: 90%;
+	margin: auto;
+	padding: 30px;
+}
+	
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+
+
+
+
+
+
+
+
+
+
 
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 /* CLASSES */
+
+.points {
+	margin-right: 100px;
+}
+
+.negative {
+	background-color: #d90000;
+	color: #ffffff;
+}
+
+
+.ok {
+	background-color: #fddf48;
+	color: #ffffff;
+}
+
+.positive {
+	background-color: #21c732;
+	color: #ffffff;
+}
+
+.span_clickable {
+	margin: 10px;
+}
+
+	.span_clickable:hover {
+		cursor: pointer;
+	}
+
+
+
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 /* BOOTSTRAP SPECIFIC */
@@ -163,6 +242,20 @@ body{
 
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 /* FUNCTIONS / BEHAVIOURS */
 
@@ -175,3 +268,6 @@ body{
 }
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
 
+.hide{
+    display: none;
+}

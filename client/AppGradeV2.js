@@ -23,7 +23,7 @@ username = new SQL.Collection('username', 'postgres://postgres:pass@localhost/me
   username.createTable(usersTable);
 
 
-  Template.body.helpers({
+  Template.test.helpers({
     usernames: function () {
       return username.select().fetch();
     },
@@ -43,7 +43,7 @@ username = new SQL.Collection('username', 'postgres://postgres:pass@localhost/me
   });
 
 
-  Template.body.events({
+  Template.test.events({
     "submit .new-task": function (event) {
       if (event.target.category.value){
         var user = username.select()
