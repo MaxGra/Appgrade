@@ -1,79 +1,75 @@
 <template name="teachertable">
     <div id="gradetable_panel" class="panel" style="margin-top: -30px;">
-			<table class="table table-bordered table-hover">
-				<thead>
-					<tr>
-						<th></th>
-						<th></th>
-						<th colspan="3"> 
-							<span>Kompetenz 1</span>
-							 
-							<span class="glyphicon glyphicon-minus span_clickable kompmini kompstatemode" data-placement="top" title="Kompetenz minimieren"></span>
-							<span class="glyphicon glyphicon-edit span_clickable kompedit kompstatemode" data-placement="top" title="Kompetenz bearbeiten"></span>
-                            <span class="glyphicon glyphicon-trash span_clickable kompdel kompeditmode hide" data-placement="top" title="Kompetenz löschen"></span>
-                            <span class="glyphicon glyphicon-ok span_clickable kompsafe kompeditmode hide" data-placement="top" title="Kompetenz speichern"></span>
-						</th>
-						
-						<th><span class="glyphicon glyphicon-plus span_clickable" data-toggle="tooltip" data-placement="top" title="Kompetenz hinzufügen"></span></th>
-					</tr>
-					<tr>
-						<th>
-							<span>NACHNAME Vorname</span>
-						</th>
-						<th>
-							<span>Gesamt</span>
-						</th>
-						<th>
-							<span>Deskriptor 1</span>
-						</th>
-						<th>
-							<span>Deskriptor 2</span>
-						</th>
-						<th>
-							<span>Descriptor 3</span>
-						</th>
-						<th>
-							<span class="glyphicon glyphicon-plus span_clickable kompeditmode" data-placement="top" title="Discriptor hinzufügen"></span>
-						</th>
-					</tr>
-				</thead>
-				<tbody>
-					<!--<tr>
-						<td>MÜLLER RICHARD</td>
-						<td class="warning">80/100</td>
-						<td class="success">40/40</td>
-						<td class="warning">30/40</td>
-						<td class="danger">10/20</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>ZETTEL MANFRED</td>
-						<td class="success">100/100</td>
-						<td class="success">40/40</td>
-						<td class="success">40/40</td>
-						<td class="success">20/20</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>BLABLA Irgendjemand</td>
-						<td class="danger">30/100</td>
-						<td class="danger">15/40</td>
-						<td class="danger">10/40</td>
-						<td class="danger">5/20</td>
-						<td></td>
-					</tr>-->
-                    
-                    {{ #each usernames }}
-                    <tr>
-                        <td>{{ name }}</td>
-                        <td class="warning">80/100</td>
-						<td class="success">40/40</td>
-						<td class="warning">30/40</td>
-						<td class="danger">10/20</td>
-						<td></td>
-                    </tr>
-                    {{ /each }}
-				</tbody>
-			</table>
+			<div class="table-responsive">
+				<table class="table table-bordered table-hover">
+					<thead>
+						<tr>
+							<th></th>
+							
+							<th colspan="3"> 
+								<span>Kompetenz 1</span>
+								 
+								<span class="glyphicon glyphicon-minus span_clickable" data-toggle="tooltip" data-placement="top" title="Kompetenz minimieren"></span>
+								<span class="glyphicon glyphicon-trash span_clickable" data-toggle="tooltip" data-placement="top" title="Kompetenz löschen" style="display: none"></span>
+								<span class="glyphicon glyphicon-edit span_clickable" data-toggle="tooltip" data-placement="top" title="Kompetenz bearbeiten"></span>
+							</th>
+							
+							<th><span class="glyphicon glyphicon-plus span_clickable" data-toggle="tooltip" data-placement="top" title="Kompetenz hinzufügen"></span></th>
+						</tr>
+						<tr>
+							<th>
+								<span>NACHNAME Vorname</span>
+							</th>
+                            {{ #each descriptors }}
+							<th>
+								<span>{{ descriptordesc }}</span>
+							</th>
+                            {{ /each }}
+							<!--<th>
+								<span>Deskriptor 2</span>
+							</th>
+							<th>
+								<span>Descriptor 3</span>
+							</th>-->
+							<th>
+								<span class="glyphicon glyphicon-plus span_clickable" style="display: none" data-toggle="tooltip" data-placement="top" title="Discriptor hinzufügen"></span>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+                        {{ #each usernames }}
+						<tr>
+							<td class="cell_name">
+								#1
+								<br/>
+								<img src="/avatars/avatar.jpg" class="avatar" width="80" height="80"/>{{ name }}
+							</td>
+							<td class="success">
+								40/40
+								<div class="timeline">
+								</div>
+								<span class="glyphicon glyphicon-plus span_clickable" data-toggle="tooltip" data-placement="top" title="positive Mitarbeit hinzufügen"></span>
+								<span class="glyphicon glyphicon-minus span_clickable" data-toggle="tooltip" data-placement="top" title="negative Mitarbeit hinzufügen"></span>
+							</td>
+							<td class="warning">
+								30/40
+								<div class="timeline">
+								</div>
+								<span class="glyphicon glyphicon-plus span_clickable" data-toggle="tooltip" data-placement="top" title="positive Mitarbeit hinzufügen"></span>
+								<span class="glyphicon glyphicon-minus span_clickable" data-toggle="tooltip" data-placement="top" title="negative Mitarbeit hinzufügen"></span>
+							</td>
+							<td class="danger">
+								10/20
+								<div class="timeline">
+								</div>
+								<span class="glyphicon glyphicon-plus span_clickable" data-toggle="tooltip" data-placement="top" title="positive Mitarbeit hinzufügen"></span>
+								<span class="glyphicon glyphicon-minus span_clickable" data-toggle="tooltip" data-placement="top" title="negative Mitarbeit hinzufügen"></span>
+							</td>
+							<td></td>
+						</tr>
+                        {{ /each }}
+					</tbody>
+				</table>
+			</div>
 		</div>
 </template>
