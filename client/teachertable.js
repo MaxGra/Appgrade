@@ -12,5 +12,11 @@ Template.teachertable.events({
 Template.teachertable.helpers({
     usernames: function () {
       return username.select().fetch();
+    },
+    subjects: function() {
+          return subject.select().fetch();
+    },
+    descriptors: function() {
+          return descriptor.select().fetch();
     }
 });

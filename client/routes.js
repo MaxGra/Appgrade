@@ -4,7 +4,13 @@ Router.route('/',{
     onBeforeAction: function(){
         var currentUser = Meteor.userId();
         if(currentUser){
-            this.render("main");
+            if(Meteor.user().isAdmin == true){
+                this.render("mainteacher");
+            }
+            if(Meteor.user().isAdmin == false){
+                this.render("mainstudent");
+            }
+            
         } else {
             this.next();
         }
@@ -20,9 +26,22 @@ Router.route('/test', function () {
     this.layout('main');
 });
 
-Router.route('/main',{
-    template: 'main',
-    name: 'main',
+Router.route('/mainteacher',{
+    template: 'mainteacher',
+    name: 'mainteacher',
+    onBeforeAction: function(){
+        var currentUser = Meteor.userId();
+        if(currentUser){
+            this.next();
+        } else {
+            this.render("login");
+        }
+    }
+});
+
+Router.route('/mainstudent',{
+    template: 'mainstudent',
+    name: 'mainstudent',
     onBeforeAction: function(){
         var currentUser = Meteor.userId();
         if(currentUser){

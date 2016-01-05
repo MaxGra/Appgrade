@@ -1,0 +1,13 @@
+<template name="teacherselect">
+    <div>Neuer Kurs anlegen
+        <form class="createnewsubject">
+        <input type="text" name="subjectname">
+        <select name="selectedclass">
+            {{ #each classes }}
+    <option value="{{ classdesc }}">{{ classdesc }}</option>
+            {{ /each }}
+        </select>
+         <input type="submit" value="Erstellen"/>
+        </form>
+    </div>
+</template>

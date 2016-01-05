@@ -7,7 +7,12 @@ Template.login.events({
                 if(error){
                     console.log(error.reason);
                 } else {
-                    Router.go("main");
+                    if(Meteor.user().isAdmin == true){
+                        Router.go("mainteacher");
+                    }
+                    if(Meteor.user().isAdmin == false){
+                        Router.go("mainstudent");
+                    }
                 }
         });
     }
@@ -19,14 +24,25 @@ Template.register.events({
         event.preventDefault();
         var userVar = event.target.registerUsername.value;
         var passwordVar = event.target.registerPassword.value;
+        var firstnameVar = event.target.registerFirstname.value;
+        var lastnameVar = event.target.registerLastname.value;
         Accounts.createUser({
             username: userVar,
-            password: passwordVar
+            password: passwordVar,
+            firstName: firstnameVar,
+            lastName: lastnameVar
         });
     }
 });
 
-Template.main.events({
+Template.mainteacher.events({
+    'click .logout': function(event){
+        event.preventDefault();
+        Meteor.logout();
+    }
+});
+
+Template.mainstudent.events({
     'click .logout': function(event){
         event.preventDefault();
         Meteor.logout();
