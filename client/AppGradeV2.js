@@ -53,9 +53,9 @@ student_has_descriptorcol = new SQL.Collection('student_has_descriptor', 'postgr
     };
 
     var teacherhassubjectTable = {
-        teacherhassubject_id: ['$number'],
+        teacherhassubjectid: ['$number'],
         subjectid: ['$number'],
-        userid: ['$number']
+        userid: ['$string']
     };
 
 /*

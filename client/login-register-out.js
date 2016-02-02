@@ -26,11 +26,13 @@ Template.register.events({
         var passwordVar = event.target.registerPassword.value;
         var firstnameVar = event.target.registerFirstname.value;
         var lastnameVar = event.target.registerLastname.value;
+        var usertypeVar = event.target.registerUsertype.value;
         Accounts.createUser({
             username: userVar,
             password: passwordVar,
             firstName: firstnameVar,
-            lastName: lastnameVar
+            lastName: lastnameVar,
+            usertype: usertypeVar
         });
     }
 });

@@ -10,6 +10,8 @@ classes = new SQL.Collection('class', 'postgres://postgres:pass@localhost/meteor
 
 subjecthasclass = new SQL.Collection('subjecthasclass', 'postgres://postgres:pass@localhost/meteor')
 
+teacherhassubject = new SQL.Collection('teacherhassubject', 'postgres://postgres:pass@localhost/meteor');
+
 /*classcol = new SQL.Collection('class', 'postgres://postgres:pass@localhost/meteor');
 subjectcol = new SQL.Collection('subject', 'postgres://postgres:pass@localhost/meteor');
 competencecol = new SQL.Collection('competence', 'postgres://postgres:pass@localhost/meteor');
@@ -18,8 +20,9 @@ student_has_classcol = new SQL.Collection('student_has_class', 'postgres://postg
 subject_has_classcol = new SQL.Collection('subject_has_class', 'postgres://postgres:pass@localhost/meteor');
 student_has_competencecol = new SQL.Collection('student_has_competence', 'postgres://postgres:pass@localhost/meteor');
 student_has_descriptorcol = new SQL.Collection('student_has_descriptor', 'postgres://postgres:pass@localhost/meteor');
-teacher_has_subjectcol = new SQL.Collection('teacher_has_subject', 'postgres://postgres:pass@localhost/meteor');*/
+*/
 
+//teacherhassubject.insert({subjectid: 2, userid: 'test'}); ??????????????????????????????????
 
 
   //tasks.createTable({text: ['$string'], checked: ["$bool", {'$default': false}], usernameid: ['$string']});
@@ -27,6 +30,8 @@ teacher_has_subjectcol = new SQL.Collection('teacher_has_subject', 'postgres://p
 
 subject.createTable({subjectdesc: ['$string']});
 subjecthasclass.createTable({classid: ['$number'], subjectid: ['$number']});
+teacherhassubject.createTable({subjectid: ['$number'], userid: ['$string']});
+
 
 //subject.insert({subjectdesc:'all'}).save();
 
@@ -63,13 +68,18 @@ subjecthasclass.publish('subjecthasclass', function(){
                    .limit(100);
   });
 
+teacherhassubject.publish('teacherhassubject', function(){
+    return teacherhassubject.select()
+                   .limit(100);
+  });
+
 Houston.add_collection(Meteor.users);
 Houston.add_collection(Houston._admins);
 
 Accounts.onCreateUser(function(options, user) {
   user.firstName = options.firstName;
   user.lastName = options.lastName;
-  user.isAdmin = false;
+  user.usertype = options.usertype;
   return user;
 });
 

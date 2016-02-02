@@ -4,11 +4,17 @@ Router.route('/',{
     onBeforeAction: function(){
         var currentUser = Meteor.userId();
         if(currentUser){
-            if(Meteor.user().isAdmin == true){
-                this.render("mainteacher");
+            if(Meteor.user().usertype == "teacher"){
+                this.layout("teacherlayout");
+                this.render("teacherselect");
             }
-            if(Meteor.user().isAdmin == false){
-                this.render("mainstudent");
+            if(Meteor.user().usertype == "student"){
+                this.layout("studentlayout");
+                this.render("studenttable");
+            }
+            if(Meteor.user().usertype == "admin"){
+                this.layout("adminlayout");
+                this.render("adminmain");
             }
             
         } else {
@@ -21,9 +27,8 @@ Router.route('/register', function () {
     this.render('register');
 });
 
-Router.route('/test', function () {
+Router.route('/klassen', function () {
     this.render('test');
-    this.layout('main');
 });
 
 Router.route('/mainteacher',{

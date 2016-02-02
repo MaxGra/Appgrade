@@ -1,4 +1,4 @@
-<template name="mainstudent">
+<template name="adminlayout">
     <nav class="navbar ag_navbar">
 			<div class="container-fluid">
 			    <div class="navbar-header">
@@ -14,9 +14,9 @@
 			    <!-- NAV-BAR: MENU -->
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				    <ul class="nav navbar-nav">
-						<li class="active"><a href="#"><span class="glyphicon glyphicon-user"></span> Mein Profil</a></li>
-						<li><a href="#"><span class="glyphicon glyphicon-exclamation-sign"></span> Zu Erledigen</a></li>
-						<li><a href="#"><span class="glyphicon glyphicon-blackboard"></span> Kurse</a></li>
+						<li class="active"><a href="/"><span class="glyphicon glyphicon-user"></span> {{ showname }}</a></li>
+						<li><a href="/klassen"><span class="glyphicon glyphicon-exclamation-sign"></span> Klassen </a></li>
+						<li><a href="#"><span class="glyphicon glyphicon-blackboard"></span> Kurse </a></li>
 						<li><a href="#"><span class="glyphicon glyphicon-font"></span> Noten</a></li>
                         <li><a href="#" class="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 				    </ul>
@@ -24,5 +24,5 @@
 			</div>
 		</nav>
     <!--{{> navigation}}-->
-    {{> studenttable}}
+    {{> yield }}
 </template>
