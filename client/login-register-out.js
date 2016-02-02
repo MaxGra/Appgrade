@@ -37,14 +37,21 @@ Template.register.events({
     }
 });
 
-Template.mainteacher.events({
+Template.adminlayout.events({
     'click .logout': function(event){
         event.preventDefault();
         Meteor.logout();
     }
 });
 
-Template.mainstudent.events({
+Template.studentlayout.events({
+    'click .logout': function(event){
+        event.preventDefault();
+        Meteor.logout();
+    }
+});
+
+Template.teacherlayout.events({
     'click .logout': function(event){
         event.preventDefault();
         Meteor.logout();
