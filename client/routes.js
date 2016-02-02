@@ -27,6 +27,11 @@ Router.route('/register', function () {
     this.render('register');
 });
 
+Router.route('/kurse', function () {
+    this.layout("teacherlayout");
+    this.render('teacherkurse');
+});
+
 Router.route('/klassen', function () {
     this.render('test');
 });
