@@ -1,8 +1,5 @@
 // Defining 2 SQL collections. The additional paramater is the postgres connection string which will only run on the server
-tasks = new SQL.Collection('tasks', 'postgres://postgres:pass@localhost/meteor');
-username = new SQL.Collection('username', 'postgres://postgres:pass@localhost/meteor');
 subject = new SQL.Collection('subject', 'postgres://postgres:pass@localhost/meteor');
-subjecthasclass = new SQL.Collection('subjecthasclass', 'postgres://postgres:pass@localhost/meteor');
 descriptor = new SQL.Collection('descriptor', 'postgres://postgres:pass@localhost/meteor');
 classes = new SQL.Collection('class', 'postgres://postgres:pass@localhost/meteor');
 teacherhassubject = new SQL.Collection('teacherhassubject', 'postgres://postgres:pass@localhost/meteor');
@@ -16,29 +13,12 @@ student_has_descriptorcol = new SQL.Collection('student_has_descriptor', 'postgr
 
 
 
-  var newUser = '';
-    
-  var taskTable = {
-    id: ['$number'],
-    text: ['$string', '$notnull'],
-    checked: ['$bool'],
-    usernameid: ['$number']
-  };
-
-  var usersTable = {
-    id: ['$number'],
-    name: ['$string', '$notnull']
-  };
 
     var subjectTable = {
         subjectid: ['$number'],
         subjectdesc: ['$string', '$notnull']
     };
 
-    var subjecthasclassTable = {
-        classid: ['$number'],
-        subjectid: ['$number']
-    };
 
     var descriptorTable = {
         descriptorid: ['$number'],
@@ -108,12 +88,9 @@ student_has_descriptorcol = new SQL.Collection('student_has_descriptor', 'postgr
     
 
 
-  tasks.createTable(taskTable);
-  username.createTable(usersTable);
 
     subject.createTable(subjectTable);
 
-    subjecthasclass.createTable(subjecthasclassTable);
 
     descriptor.createTable(descriptorTable);
 
@@ -139,7 +116,7 @@ student_has_descriptorcol = new SQL.Collection('student_has_descriptor', 'postgr
     },
       subjects: function() {
           return subject.select().fetch();
-    },
+    } /*,
     tasks: function () {
       if (newUser === 'all'){
           return tasks.select('tasks.id', 'tasks.text', 'tasks.checked', 'tasks.created_at', 'username.name')
@@ -147,12 +124,12 @@ student_has_descriptorcol = new SQL.Collection('student_has_descriptor', 'postgr
             .fetch();
       }
       else {
-        return tasks.select('id', 'text', 'checked'/*, 'username.name'*/)
+        return tasks.select('id', 'text', 'checked', 'username.name')
           //.join(['OUTER JOIN'], ['usernameid'], [['username', ['id']]])
          // .where("name = ?", newUser)
           .fetch();
       }
-    }
+    }*/
   });
 
 

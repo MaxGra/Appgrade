@@ -1,14 +1,10 @@
 // Defining 2 SQL collections. The additional paramater is the postgres connection string which will only run on the server
-tasks = new SQL.Collection('tasks', 'postgres://postgres:pass@localhost/meteor');
-username = new SQL.Collection('username', 'postgres://postgres:pass@localhost/meteor');
 
 subject = new SQL.Collection('subject', 'postgres://postgres:pass@localhost/meteor');
 
 descriptor = new SQL.Collection('descriptor', 'postgres://postgres:pass@localhost/meteor');
 
 classes = new SQL.Collection('class', 'postgres://postgres:pass@localhost/meteor');
-
-subjecthasclass = new SQL.Collection('subjecthasclass', 'postgres://postgres:pass@localhost/meteor')
 
 teacherhassubject = new SQL.Collection('teacherhassubject', 'postgres://postgres:pass@localhost/meteor');
 
@@ -29,7 +25,6 @@ student_has_descriptorcol = new SQL.Collection('student_has_descriptor', 'postgr
   //username.createTable({name: ['$string', '$unique']});
 
 subject.createTable({subjectdesc: ['$string']});
-subjecthasclass.createTable({classid: ['$number'], subjectid: ['$number']});
 teacherhassubject.createTable({subjectid: ['$number'], userid: ['$string']});
 
 
@@ -37,16 +32,6 @@ teacherhassubject.createTable({subjectid: ['$number'], userid: ['$string']});
 
   //username.insert({name:'all'}).save();
 
-  tasks.publish('tasks', function(){
-    return tasks.select('id', 'text', 'checked'/*, 'username.id as usernameid', 'username.name'*/)
-       //.join(['INNER JOIN'], ["usernameid"], [["username", 'id']])
-       .limit(100);
-  });
-
-  username.publish('username', function(){
-    return username.select('id', 'name')
-                   .limit(100);
-  });
 
     subject.publish('subject', function(){
     return subject.select('subjectid', 'subjectdesc')
@@ -63,10 +48,6 @@ classes.publish('class', function(){
                    .limit(100);
   });
 
-subjecthasclass.publish('subjecthasclass', function(){
-    return subjecthasclass.select()
-                   .limit(100);
-  });
 
 teacherhassubject.publish('teacherhassubject', function(){
     return teacherhassubject.select()
