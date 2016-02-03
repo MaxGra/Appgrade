@@ -1,6 +1,6 @@
 Router.route('/',{
     template: 'login',
-    name: 'login',
+    name: 'main',
     onBeforeAction: function(){
         var currentUser = Meteor.userId();
         if(currentUser){
@@ -27,14 +27,43 @@ Router.route('/register', function () {
     this.render('register');
 });
 
-Router.route('/kurse', function () {
-    this.layout("teacherlayout");
-    this.render('teacherkurse');
+
+Router.route('/klassen',{ 
+    name: 'klassen',
+    onBeforeAction: function () {
+        var currentUser = Meteor.userId();
+        if(currentUser){
+        if(Meteor.user().usertype == "admin"){
+            this.layout("adminlayout");
+            this.render('adminklassen');
+        }
+        else{
+            this.render("forbidden");
+        }
+      }
+        else{
+          Router.go("main");
+        }
+    }
 });
 
-Router.route('/klassen', function () {
-    this.layout("adminlayout");
-    this.render('adminklassen');
+Router.route('/kurse',{ 
+    name: 'kurse',
+    onBeforeAction: function () {
+        var currentUser = Meteor.userId();
+        if(currentUser){
+        if(Meteor.user().usertype == "teacher"){
+            this.layout("teacherlayout");
+            this.render('teacherkurse');
+        }
+        else{
+            this.render("forbidden");
+        }
+      }
+        else{
+          Router.go("main");
+        }
+    }
 });
 
 Router.route('/mainteacher',{

@@ -7,12 +7,9 @@ Template.login.events({
                 if(error){
                     console.log(error.reason);
                 } else {
-                    if(Meteor.user().isAdmin == true){
-                        Router.go("mainteacher");
-                    }
-                    if(Meteor.user().isAdmin == false){
-                        Router.go("mainstudent");
-                    }
+                    
+                    Router.go("main");
+                    
                 }
         });
     }
