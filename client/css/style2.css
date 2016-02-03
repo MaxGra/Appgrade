@@ -77,9 +77,49 @@ th span {
 	
 	z-index: 10 !important;
 }
+
+#panel_classes {
+	width: 90%;
+	
+	margin: auto;
+	padding: 30px;
+	
+	/*
+	position: relative;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+ 	transform: translateY(-50%);
+ 	*/
+}
+
+/* list with all classes */
+#classes {
+	width: 90%;
+	height: auto;
+	
+	border-style: solid;
+	border-width: 1px 1px 1px 1px;
+	border-color: #d0d0d0;
+	
+	border-radius: 5px;
+	
+	margin: auto;
+}
+
+	/* fit table into container - remove space */
+	#classes table {
+		margin: 0px;
+		padding: 0px;
+		
+	}
+	
+	/* fix border when hovering */
+	#classes table tr:last-child:hover *{
+		border-radius: 5px;
+	}
 	
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
-
 
 
 
@@ -182,6 +222,17 @@ th span {
 	margin-right: 10px;
 }
 
+
+.container_classes_buttons {
+	width: 90%;
+	margin: auto;
+}
+
+	.container_classes_buttons * {
+		margin: 0px 10px 5px 0px;
+	}
+
+
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
 	
 	
@@ -243,6 +294,20 @@ th span {
 		color: #ffffff;
 		background-color: #b90000;
 	}
+	
+	
+.ag_button_alt {
+	border-radius: 5px;
+	
+	color: #ffffff;
+	background-color: #b90000;
+}
+
+	.ag_button_alt:hover {
+		color: #ffffff;
+		background-color: rgba(186, 0, 0, 0.83);
+	}
+	
 	
 /* textfield style */
 .ag_textfield {
@@ -343,3 +408,103 @@ th span {
 }
 
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+/*	CLASS-LIST */
+
+/* list with subjects and grades for student view - should be renamed to 'subject-list' */
+#class-list {
+	width: 80%;
+	padding-bottom: 50px;
+	margin: auto;
+}
+
+.list-group-item {
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+	
+#container_classview {
+	/*
+	border-style: solid;
+	border-width: 1px 1px 1px 1px;
+	border-color: #d0d0d0; 
+	*/
+	width: 80%;
+	margin: auto;
+	padding-bottom: 50px;
+}
+
+#classview {
+	width: 100%;
+	
+	margin: auto;
+}
+
+	#classview tr {
+		border-style: solid;
+		border-width: 1px 1px 1px 1px;
+		border-color: #d0d0d0; 
+		
+		background: rgba(255, 255, 255, 1.0);
+	}
+	
+		#classview tr:hover {
+			background: rgba(245, 245, 245, 0.7);
+		}
+	
+	#classview td {
+		padding: 15px;
+		
+		text-align: left;
+	}
+	
+	
+.competence_title {
+	text-align: center;
+	
+	/*
+	background: #b90000;
+	color: #ffffff;
+	*/
+}
+
+
+.classview_points {
+	float: right;
+}
+
+.classview_competence {
+	
+}
+
+.classview_descriptor {
+	text-align: left;
+}
+
+.descriptor_description {
+	display: block;
+}
+
+.center {
+	text-align: center;
+	margin: auto;
+}
+
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+
+
