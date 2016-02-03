@@ -1,24 +1,41 @@
-// Defining 2 SQL collections. The additional paramater is the postgres connection string which will only run on the server
+// Defining SQL collections. The additional paramater is the postgres connection string which will only run on the server
+
+years = new SQL.Collection('years', 'postgres://postgres:pass@localhost/meteor');
+
 subject = new SQL.Collection('subject', 'postgres://postgres:pass@localhost/meteor');
+
+competence = new SQL.Collection('competence', 'postgres://postgres:pass@localhost/meteor');
+
 descriptor = new SQL.Collection('descriptor', 'postgres://postgres:pass@localhost/meteor');
+
 classes = new SQL.Collection('class', 'postgres://postgres:pass@localhost/meteor');
+
 teacherhassubject = new SQL.Collection('teacherhassubject', 'postgres://postgres:pass@localhost/meteor');
-/*
 
-competencecol = new SQL.Collection('competence', 'postgres://postgres:pass@localhost/meteor');
-student_has_classcol = new SQL.Collection('student_has_class', 'postgres://postgres:pass@localhost/meteor');
-student_has_competencecol = new SQL.Collection('student_has_competence', 'postgres://postgres:pass@localhost/meteor');
-student_has_descriptorcol = new SQL.Collection('student_has_descriptor', 'postgres://postgres:pass@localhost/meteor');
-*/
+studenthasclass = new SQL.Collection('studenthasclass', 'postgres://postgres:pass@localhost/meteor');
 
+studenthascompetence = new SQL.Collection('studenthascompetence', 'postgres://postgres:pass@localhost/meteor');
 
+studenthasdescriptor = new SQL.Collection('studenthasdescriptor', 'postgres://postgres:pass@localhost/meteor');
+//_______________________________________________
 
+    var yearsTable = {
+        yearsid: ['$number'],
+        yearsdesc: ['$string', '$notnull']
+    };
 
     var subjectTable = {
         subjectid: ['$number'],
+        yearsyearid: ['$number'],
         subjectdesc: ['$string', '$notnull']
     };
 
+    var competenceTable = {
+        competenceid: ['$number'],
+        subjectsubjectid: ['$number'],
+        competencedesc: ['$string', '$notnull'],
+        pointsmax: ['$number']
+    };
 
     var descriptorTable = {
         descriptorid: ['$number'],
@@ -29,68 +46,44 @@ student_has_descriptorcol = new SQL.Collection('student_has_descriptor', 'postgr
 
     var classTable = {
         classid: ['$number'],
+        yearsyearid: ['$number'],
         classdesc: ['$string', '$notnull']
     };
 
     var teacherhassubjectTable = {
         teacherhassubjectid: ['$number'],
         subjectid: ['$number'],
-        userid: ['$string']
+        userid: ['$string', '$notnull']
     };
 
-/*
-
-
-    var competenceTable = {
-        competence_id: ['$number'],
-        subject_id: ['$number'],
-        competencedesc: ['$string', '$notnull'],
-        pointsmax: ['$number']
-    };
-    
-
-    var descriptorTable = {
-        descriptorid: ['$number', '$notnull'],
-        competencecompetenceid: ['$number', '$notnull'],
-        descriptordesc: ['$string'],
-        pointsmax: ['$number']
+    var studenthasclassTable = {
+        studenthasclassid: ['$number'],
+        classclassid: ['$number'],
+        userid: ['$string', '$notnull']
     };
 
-    var student_has_classTable = {
-        student_has_class_id: ['$number'],
-        class_id: ['$number'],
-        user_id: ['$number']
+    var studenthascompetenceTable = {
+        studenthascompetenceid: ['$number'],
+        competencecompetenceid: ['$number'],
+        userid: ['$string', '$notnull'],
+        pointserached: ['$number']
     };
 
-    var subject_has_classTable = {
-        class_id: ['$number'],
-        subject_id: ['$number']
+    var studenthasdescriptorTable = {
+        studenthasdescriptorid: ['$number'],
+        descriptordescriptorid: ['$number'],
+        userid: ['$string', '$notnull'],
+        pointserached: ['$number']
     };
 
-    var student_has_competenceTable = {
-        student_has_competence_id: ['$number'],
-        competence_id: ['$number'],
-        user_id: ['$number'],
-        pointsreached: ['$number']
-    };
-
-    var student_has_descriptorTable = {
-        student_has_descriptor_id: ['$number'],
-        descriptor_id: ['$number'],
-        user_id: ['$number'],
-        pointsreached: ['$number']
-    };
-
-    
-    */
+//_______________________________________________
 
 
-    
-
-
+    years.createTable(yearsTable);
 
     subject.createTable(subjectTable);
 
+    competence.createTable(competenceTable);
 
     descriptor.createTable(descriptorTable);
 
@@ -98,16 +91,16 @@ student_has_descriptorcol = new SQL.Collection('student_has_descriptor', 'postgr
 
     teacherhassubject.createTable(teacherhassubjectTable);
 
-   /* classcol.createTable(classTable);
-    subjectcol.createTable(subjectTable);
-    competencecol.createTable(competenceTable);
-    descriptor.createTable(descriptorTable);
-    student_has_classcol.createTable(student_has_classTable);
-    subject_has_classcol.createTable(subject_has_classTable);
-    student_has_competencecol.createTable(student_has_competenceTable);
-    student_has_descriptorcol.createTable(student_has_descriptorTable);
-*/
-    
+    studenthasclass.createTable(studenthasclassTable);
+
+    studenthascompetence.createTable(studenthascompetenceTable);
+
+    studenthasdescriptor.createTable(studenthasdescriptorTable);
+
+
+
+//_______________________________________________
+
 
 
   Template.test.helpers({
