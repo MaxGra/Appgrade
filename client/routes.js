@@ -33,7 +33,8 @@ Router.route('/kurse', function () {
 });
 
 Router.route('/klassen', function () {
-    this.render('test');
+    this.layout("adminlayout");
+    this.render('adminklassen');
 });
 
 Router.route('/mainteacher',{
