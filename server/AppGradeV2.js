@@ -56,17 +56,17 @@ teacherhassubject.publish('teacherhassubject', function(){
     return teacherhassubject.select('teacherhassubjectid', 'subjectsubjectid', 'userid').limit(100);
   });
 
-studenthasclass.publish('studenthasclass', function(){
-    return studenthasclass.select('studenthasclassid', 'classclassid', 'userid').limit(100);
-  });
-
-studenthascompetence.publish('studenthascompetence', function(){
-    return studenthascompetence.select('studenthascompetenceid', 'competencecompetenceid', 'userid', 'pointsreached').limit(100);
-  });
-
-studenthasdescriptor.publish('studenthasdescriptor', function(){
-    return studenthasdescriptor.select('studenthasdescriptorid', 'descriptordescriptorid', 'userid', 'pointsreached').limit(100);
-  });
+//studenthasclass.publish('studenthasclass', function(){
+//    return studenthasclass.select('studenthasclassid', 'classclassid', 'userid').limit(100);
+//  });
+//
+//studenthascompetence.publish('studenthascompetence', function(){
+//    return studenthascompetence.select('studenthascompetenceid', 'competencecompetenceid', 'userid', 'pointsreached').limit(100);
+//  });
+//
+//studenthasdescriptor.publish('studenthasdescriptor', function(){
+//    return studenthasdescriptor.select('studenthasdescriptorid', 'descriptordescriptorid', 'userid', 'pointsreached').limit(100);
+//  });
 
 
 //_______________________________________________
