@@ -56,25 +56,25 @@ studenthasdescriptor = new SQL.Collection('studenthasdescriptor', 'postgres://po
         userid: ['$string', '$notnull']
     };
 
-    var studenthasclassTable = {
-        studenthasclassid: ['$number'],
-        classclassid: ['$number'],
-        userid: ['$string', '$notnull']
-    };
-
-    var studenthascompetenceTable = {
-        studenthascompetenceid: ['$number'],
-        competencecompetenceid: ['$number'],
-        userid: ['$string', '$notnull'],
-        pointserached: ['$number']
-    };
-
-    var studenthasdescriptorTable = {
-        studenthasdescriptorid: ['$number'],
-        descriptordescriptorid: ['$number'],
-        userid: ['$string', '$notnull'],
-        pointserached: ['$number']
-    };
+//    var studenthasclassTable = {
+//        studenthasclassid: ['$number'],
+//        classclassid: ['$number'],
+//        userid: ['$string', '$notnull']
+//    };
+//
+//    var studenthascompetenceTable = {
+//        studenthascompetenceid: ['$number'],
+//        competencecompetenceid: ['$number'],
+//        userid: ['$string', '$notnull'],
+//        pointserached: ['$number']
+//    };
+//
+//    var studenthasdescriptorTable = {
+//        studenthasdescriptorid: ['$number'],
+//        descriptordescriptorid: ['$number'],
+//        userid: ['$string', '$notnull'],
+//        pointserached: ['$number']
+//    };
 
 //_______________________________________________
 
@@ -91,11 +91,11 @@ studenthasdescriptor = new SQL.Collection('studenthasdescriptor', 'postgres://po
 
     teacherhassubject.createTable(teacherhassubjectTable);
 
-    studenthasclass.createTable(studenthasclassTable);
-
-    studenthascompetence.createTable(studenthascompetenceTable);
-
-    studenthasdescriptor.createTable(studenthasdescriptorTable);
+//    studenthasclass.createTable(studenthasclassTable);
+//
+//    studenthascompetence.createTable(studenthascompetenceTable);
+//
+//    studenthasdescriptor.createTable(studenthasdescriptorTable);
 
 
 
