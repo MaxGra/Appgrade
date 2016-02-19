@@ -27,34 +27,42 @@ studenthasdescriptor = new SQL.Collection('studenthasdescriptor', 'postgres://po
     var subjectTable = {
         subjectid: ['$number'],
         yearsyearid: ['$number'],
-        subjectdesc: ['$string', '$notnull']
+        subjectdesc: ['$string', '$notnull']/*,
+        yearsid: ['$number'],
+        yearsdesc: ['$string', '$notnull']*/
     };
 
-    var competenceTable = {
-        competenceid: ['$number'],
-        subjectsubjectid: ['$number'],
-        competencedesc: ['$string', '$notnull'],
-        pointsmax: ['$number']
-    };
-
-    var descriptorTable = {
-        descriptorid: ['$number'],
-        competencecompetenceid: ['$number'],
-        descriptordesc: ['$string', '$notnull'],
-        pointsmax: ['$number']
-    };
-
-    var classTable = {
-        classid: ['$number'],
-        yearsyearid: ['$number'],
-        classdesc: ['$string', '$notnull']
-    };
-
-    var teacherhassubjectTable = {
+    var teacherhassubjectTable  = {
         teacherhassubjectid: ['$number'],
-        subjectid: ['$number'],
+        subjectsubjectid: ['$number'],
         userid: ['$string', '$notnull']
     };
+
+//    var competenceTable = {
+//        competenceid: ['$number'],
+//        subjectsubjectid: ['$number'],
+//        competencedesc: ['$string', '$notnull'],
+//        pointsmax: ['$number']
+//    };
+//
+//    var descriptorTable = {
+//        descriptorid: ['$number'],
+//        competencecompetenceid: ['$number'],
+//        descriptordesc: ['$string', '$notnull'],
+//        pointsmax: ['$number']
+//    };
+//
+//    var classTable = {
+//        classid: ['$number'],
+//        yearsyearid: ['$number'],
+//        classdesc: ['$string', '$notnull']
+//    };
+
+//    var teacherhassubjectTable = {
+//        teacherhassubjectid: ['$number'],
+//        subjectid: ['$number'],
+//        userid: ['$string', '$notnull']
+//    };
 
 //    var studenthasclassTable = {
 //        studenthasclassid: ['$number'],
@@ -79,17 +87,19 @@ studenthasdescriptor = new SQL.Collection('studenthasdescriptor', 'postgres://po
 //_______________________________________________
 
 
+  teacherhassubject.createTable(teacherhassubjectTable);
+
     years.createTable(yearsTable);
 
     subject.createTable(subjectTable);
 
-    competence.createTable(competenceTable);
+//    competence.createTable(competenceTable);
+//
+//    descriptor.createTable(descriptorTable);
+//
+//    classes.createTable(classTable);
 
-    descriptor.createTable(descriptorTable);
-
-    classes.createTable(classTable);
-
-    teacherhassubject.createTable(teacherhassubjectTable);
+//    teacherhassubject.createTable(teacherhassubjectTable);
 
 //    studenthasclass.createTable(studenthasclassTable);
 //

@@ -22,7 +22,7 @@ studenthasdescriptor = new SQL.Collection('studenthasdescriptor', 'postgres://po
 //_______________________________________________
 
 
-//teacherhassubject.insert({subjectid: 2, userid: 'test'}); ??????????????????????????????????
+//teacherhassubject.insert({subjectid: 2, userid: 'test'}); -+
 
 //subject.insert({subjectdesc:'all'}).save();
 
@@ -31,6 +31,27 @@ studenthasdescriptor = new SQL.Collection('studenthasdescriptor', 'postgres://po
 
 //_______________________________________________
 
+//  teacherhassubject.publish('teacherhassubject', function(){
+//    tryout = teacherhassubject.select('subjectdesc', 'userid', 'subjectsubjectid')
+//                .join(['INNER JOIN'], ["subjectsubjectid"], [["subject", 'subjectid']])
+//                .limit(100);
+//    return tryout.join(['INNER JOIN'], ["yearsyearsid"], [["years", 'yearsid']])
+//                .where("userid = 'ceic34fLMYPp7bFit'")
+//  });
+
+subject.publish('subject', function(){5
+    return subject.select('yearsid', 'yearsdesc', 'subjectid', 'yearsyearsid', 'subjectdesc')
+                .join(['INNER JOIN'], ["yearsyearsid"], [["years", 'yearsid']])
+                .limit(100);
+  });
+
+teacherhassubject.publish('teacherhassubject', function(){
+    return teacherhassubject.select('teacherhassubjectid', 'subjectsubjectid', 'userid').limit(100);
+  });
+
+//subject.publish('subject', function(){
+//    return subject.select('subjectid', 'yearsyearsid', 'subjectdesc').limit(100);
+//  });
 
 years.publish('years', function(){
     return years.select('yearsid', 'yearsdesc').limit(100);
@@ -40,21 +61,14 @@ years.publish('years', function(){
 //    return classes.select('classid', 'yearsyearsid', 'classdesc').limit(100);
 //  });
 
-subject.publish('subject', function(){
-    return subject.select('subjectid', 'yearsyearsid', 'subjectdesc').limit(100);
-  });
 
-competence.publish('competence', function(){
-    return competence.select('competenceid', 'subjectsubjectid', 'competencedesc', 'pointsmax').limit(100);
-  });
-
-descriptor.publish('descriptor', function(){
-    return descriptor.select('descriptorid', 'competencecompetenceid', 'descriptordesc', 'pointsmax').limit(100);
-  });
-
-teacherhassubject.publish('teacherhassubject', function(){
-    return teacherhassubject.select('teacherhassubjectid', 'subjectsubjectid', 'userid').limit(100);
-  });
+//competence.publish('competence', function(){
+//    return competence.select('competenceid', 'subjectsubjectid', 'competencedesc', 'pointsmax').limit(100);
+//  });
+//
+//descriptor.publish('descriptor', function(){
+//    return descriptor.select('descriptorid', 'competencecompetenceid', 'descriptordesc', 'pointsmax').limit(100);
+//  });
 
 //studenthasclass.publish('studenthasclass', function(){
 //    return studenthasclass.select('studenthasclassid', 'classclassid', 'userid').limit(100);
