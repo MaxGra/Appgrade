@@ -1,5 +1,5 @@
 <template name="teacherkurse">
-    <h1>Daten</h1>
+    <h1>Meine Kurse</h1>
     <div>
 <!--
         <ul>
@@ -13,11 +13,6 @@
             {{ /each }}
         </ul>
 -->
-        <ul>
-            {{ #each dataset }}
-            <li>{{yearsdesc}} , {{ subjectdesc }}</li>
-            {{ /each }}
-        </ul>
 <!--
         <form class="showyears">
         <select name="selectedyears">
@@ -38,4 +33,30 @@
         </form>
 -->
     </div>
+    
+    {{ #each dataset }}
+    
+    <a href="/kurse/{{ subjectid }}">
+    
+    <div class="panel course">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-10">
+						<span class="course-title">{{ subjectdesc }}</span>
+						
+						<span class="course-trainer">TrainerIn: Vorname NACHNAME</span>
+					</div>
+					<div class="col-md-2">
+						<span class="course-class">Klasse: {{ classdesc }}</span>
+							
+						<span class="course-vintage">Jahrgang: {{yearsdesc}}</span>
+					</div>
+				</div>
+			</div>
+		</div>
+        
+    </a>
+    
+    {{ /each }}
+    
 </template>

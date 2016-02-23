@@ -6,7 +6,7 @@ Router.route('/',{
         if(currentUser){
             if(Meteor.user().usertype == "teacher"){
                 this.layout("teacherlayout");
-                this.render("teacherselect");
+                this.render("teacherkurse");
             }
             if(Meteor.user().usertype == "student"){
                 this.layout("studentlayout");
@@ -65,6 +65,16 @@ Router.route('/kurse',{
         }
     }
 });
+
+Router.route('/kurse/:_id', {
+    template: 'teacherselectedkurs',
+    data: function(){
+        var currentSubject = this.params._id;
+        this.layout("teacherlayout");
+        this.render('teachertable');
+    }
+});
+
 
 Router.route('/mainteacher',{
     template: 'mainteacher',

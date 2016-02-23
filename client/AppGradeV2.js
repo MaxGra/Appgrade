@@ -26,7 +26,7 @@ studenthasdescriptor = new SQL.Collection('studenthasdescriptor', 'postgres://po
 
     var subjectTable = {
         subjectid: ['$number'],
-        yearsyearid: ['$number'],
+        yearsyearsid: ['$number'],
         subjectdesc: ['$string', '$notnull']/*,
         yearsid: ['$number'],
         yearsdesc: ['$string', '$notnull']*/
@@ -52,11 +52,11 @@ studenthasdescriptor = new SQL.Collection('studenthasdescriptor', 'postgres://po
 //        pointsmax: ['$number']
 //    };
 //
-//    var classTable = {
-//        classid: ['$number'],
-//        yearsyearid: ['$number'],
-//        classdesc: ['$string', '$notnull']
-//    };
+    var classTable = {
+        classid: ['$number'],
+        yearsyearsid: ['$number'],
+        classdesc: ['$string', '$notnull']
+   };
 
 //    var teacherhassubjectTable = {
 //        teacherhassubjectid: ['$number'],
@@ -97,7 +97,7 @@ studenthasdescriptor = new SQL.Collection('studenthasdescriptor', 'postgres://po
 //
 //    descriptor.createTable(descriptorTable);
 //
-//    classes.createTable(classTable);
+    classes.createTable(classTable);
 
 //    teacherhassubject.createTable(teacherhassubjectTable);
 

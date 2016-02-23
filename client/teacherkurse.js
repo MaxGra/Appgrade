@@ -1,6 +1,6 @@
 Template.teacherkurse.helpers({
     dataset: function(){
-      return teacherhassubject.select('subject.yearsdesc', 'subject.subjectdesc')
+      return teacherhassubject.select('subject.yearsdesc', 'subject.subjectdesc', 'subject.subjectid')
       .join(['OUTER JOIN'], ["subjectsubjectid"], [["subject", ['subjectid']]])
  //     .join(['OUTER JOIN'], ['yearsyearsid'], [['years', ['yearsid']]])
       .where('userid = ceic34fLMYPp7bFit')

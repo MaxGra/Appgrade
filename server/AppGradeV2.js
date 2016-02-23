@@ -39,7 +39,7 @@ studenthasdescriptor = new SQL.Collection('studenthasdescriptor', 'postgres://po
 //                .where("userid = 'ceic34fLMYPp7bFit'")
 //  });
 
-subject.publish('subject', function(){5
+subject.publish('subject', function(){
     return subject.select('yearsid', 'yearsdesc', 'subjectid', 'yearsyearsid', 'subjectdesc')
                 .join(['INNER JOIN'], ["yearsyearsid"], [["years", 'yearsid']])
                 .limit(100);
@@ -56,7 +56,7 @@ teacherhassubject.publish('teacherhassubject', function(){
 years.publish('years', function(){
     return years.select('yearsid', 'yearsdesc').limit(100);
   });
-
+//
 //classes.publish('class', function(){
 //    return classes.select('classid', 'yearsyearsid', 'classdesc').limit(100);
 //  });
