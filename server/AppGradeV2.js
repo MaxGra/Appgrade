@@ -62,10 +62,12 @@ years.publish('years', function(){
 //  });
 
 
-//competence.publish('competence', function(){
-//    return competence.select('competenceid', 'subjectsubjectid', 'competencedesc', 'pointsmax').limit(100);
-//  });
-//
+competence.publish('competence', function(){
+    return competence.select('subjectid', 'subjectdesc', 'competenceid', 'subjectsubjectid', 'competencedesc', 'pointsmax')
+        .join(['INNER JOIN'], ["subjectsubjectid"], [["subject", 'subjectid']])
+        .limit(100);
+  });
+
 //descriptor.publish('descriptor', function(){
 //    return descriptor.select('descriptorid', 'competencecompetenceid', 'descriptordesc', 'pointsmax').limit(100);
 //  });

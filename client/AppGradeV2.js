@@ -38,12 +38,12 @@ studenthasdescriptor = new SQL.Collection('studenthasdescriptor', 'postgres://po
         userid: ['$string', '$notnull']
     };
 
-//    var competenceTable = {
-//        competenceid: ['$number'],
-//        subjectsubjectid: ['$number'],
-//        competencedesc: ['$string', '$notnull'],
-//        pointsmax: ['$number']
-//    };
+    var competenceTable = {
+        competenceid: ['$number'],
+        subjectsubjectid: ['$number'],
+        competencedesc: ['$string', '$notnull'],
+        pointsmax: ['$number']
+    };
 //
 //    var descriptorTable = {
 //        descriptorid: ['$number'],
@@ -93,7 +93,7 @@ studenthasdescriptor = new SQL.Collection('studenthasdescriptor', 'postgres://po
 
     subject.createTable(subjectTable);
 
-//    competence.createTable(competenceTable);
+    competence.createTable(competenceTable);
 //
 //    descriptor.createTable(descriptorTable);
 //
