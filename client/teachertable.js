@@ -6,7 +6,16 @@ Template.teachertable.events({
     "click .kompsafe": function(event) {
         $('.kompeditmode').addClass("hide");
         $('.kompstatemode').removeClass("hide");
-    }
+    },
+    'click .editcomp': function(event) {
+    event.preventDefault();
+    
+    $('#competenceModal').modal('show');
+        
+    var selectedcomp = event.target.getAttribute('data-compid')
+    Session.set('selectedCompetence', selectedcomp);
+        console.log(selectedcomp);
+  }
 });
 
 //Template.teachertable.helpers({

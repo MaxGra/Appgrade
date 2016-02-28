@@ -35,7 +35,13 @@ Router.route('/klassen',{
         if(currentUser){
         if(Meteor.user().usertype == "admin"){
             this.layout("adminlayout");
-            this.render('adminklassen');
+            this.render('adminklassen',{
+                data: function(){
+                    var classdata = classes.select().fetch();
+                    var yearsdata = years.select().fetch();
+                    return [classdata,yearsdata];
+                }
+            });
         }
         else{
             this.render("forbidden");

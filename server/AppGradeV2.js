@@ -54,7 +54,7 @@ teacherhassubject.publish('teacherhassubject', function(){
 //  });
 
 years.publish('years', function(){
-    return years.select('yearsid', 'yearsdesc').limit(100);
+    return years.select('yearsid', 'yearsdesc').order('yearsid DESC').limit(100);
   });
 //
 
@@ -73,7 +73,7 @@ competence.publish('competence', function(){
   });
 
 descriptor.publish('descriptor', function(){
-    return descriptor.select('descriptorid', 'competencecompetenceid', 'descriptordesc', 'pointsmax').limit(100);
+    return descriptor.select('descriptorid', 'competencecompetenceid', 'descriptordesc', 'pointsmax').order('descriptorid DESC').limit(100);
   });
 
 //studenthasclass.publish('studenthasclass', function(){

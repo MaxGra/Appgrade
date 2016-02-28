@@ -1,0 +1,132 @@
+<template name="competenceModalTemplate">
+  <div class="modal fade" id="competenceModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h4 class="modal-title">Kompetenz bearbeiten</h4>
+        </div>
+
+        <div class="modal-body">
+            
+            {{competence}}
+            
+            {{#each competences}}
+            
+                <p>{{competencedesc}}</p>
+            
+            {{/each}}
+         
+				<table class="table table-bordered table-hover">
+					<thead>
+						<tr>
+							<th>
+								Nr.
+							</th>
+							<th>
+								Beschreibung
+							</th>
+							<th>
+								Deadline
+							</th>
+							<th>
+								Max. Punkte
+							</th>
+							<th>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								1
+							</td>
+							<td>
+								<span class="mode_normal">Beschreibung der Aufgabe</span>
+								<textarea class="form-control mode_edit" rows="3"></textarea>
+							</td>
+							<td>
+								<span class="mode_normal">30.01.2015</span>
+								<input type="date" class="form-control mode_edit">
+							</td>
+							<td>
+								<span class="mode_normal">60</span>
+								<input type="number" class="form-control mode_edit">
+							</td>
+							<td>
+								<span class="glyphicon glyphicon-edit span_clickable" data-toggle="tooltip" data-placement="top" title="Aufgabe bearbeiten"></span>
+								<span class="glyphicon glyphicon-floppy-saved span_clickable mode_edit" data-toggle="tooltip" data-placement="top" title="Änderungen speichern"></span>
+								<span class="glyphicon glyphicon-floppy-remove span_clickable mode_edit" data-toggle="tooltip" data-placement="top" title="Änderungen verwerfen"></span>
+	
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			
+			
+				<br/>
+			
+			<h4>Mitarbeit:</h4>
+			<div class="table-responsive">
+				<table class="table table-bordered table-hover">
+					<thead>
+						<tr>
+							<th>
+								Nr.
+							</th>
+							<th>
+								Zeitpunkt
+							</th>
+							<th>
+								Typ
+							</th>
+							<th>
+								Punkte
+							</th>
+							<th>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								1
+							</td>
+							<td>
+								<span class="mode_normal">23.12.2015</span>
+								<input type="date" class="form-control mode_edit">
+							</td>
+							<td>
+								Theorie
+								<select class="form-control mode_edit">
+								  <option value="none"></option>
+								  <option value="theorie">Theorie</option>
+								  <option value="praxis">Praxis</option>
+								</select>
+							</td>
+							<td>
+								3
+								<input type="number" class="form-control mode_edit">
+							</td>
+							<td>
+								<span class="glyphicon glyphicon-edit span_clickable mode_normal" data-toggle="tooltip" data-placement="top" title="Mitarbeit bearbeiten"></span>
+								<span class="glyphicon glyphicon-floppy-saved span_clickable mode_edit" data-toggle="tooltip" data-placement="top" title="Änderungen speichern"></span>
+								<span class="glyphicon glyphicon-floppy-remove span_clickable mode_edit" data-toggle="tooltip" data-placement="top" title="Änderungen verwerfen"></span>
+	
+	
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="save">Save</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+    </div>
+</template>

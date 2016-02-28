@@ -9,24 +9,16 @@
 						<tr>
 							<th></th>
                             
+                            
                             {{ #each competences }}
 							
-							<th colspan="2"> 
+							<th colspan="{{descriptors.length}}"> 
 								<span>{{ competencedesc }}</span>
                     
 								<span class="glyphicon glyphicon-minus span_clickable" data-toggle="tooltip" data-placement="top" title="Kompetenz minimieren"></span>
 								<span class="glyphicon glyphicon-trash span_clickable" data-toggle="tooltip" data-placement="top" title="Kompetenz löschen" style="display: none"></span>
-								<span class="glyphicon glyphicon-edit span_clickable" data-toggle="tooltip" data-placement="top" title="Kompetenz bearbeiten"></span>
-                                <tr>
+								<span class="glyphicon glyphicon-edit span_clickable editcomp" data-toggle="tooltip" data-placement="top" data-compid="{{ competenceid}}" title="Kompetenz bearbeiten"></span>
                                 
-                                    {{#each descriptors}}
-                                    <th>
-                                    <span>{{descriptordesc}}</span>
-                                    </th>
-                                    {{/each}}
-								
-							     
-                                </tr>
                                 
                                 
 							</th>
@@ -39,15 +31,29 @@
 							<th>
 								<span>NACHNAME Vorname</span>
 							</th>
+                            
+                            {{#each competences}}
+                            {{#each descriptors}}
 							<th>
-								<span>Deskriptor 2</span>
+								<span>{{descriptordesc}}</span>
 							</th>
+                            {{/each}}
+<!--
+                            <th>
+								<span class="glyphicon glyphicon-plus span_clickable" style="display: none" data-toggle="tooltip" data-placement="top" title="Discriptor hinzufügen"></span>
+							</th>
+-->
+                            {{/each}}
+<!--
 							<th>
 								<span>Descriptor 3</span>
 							</th>
+-->
+<!--
 							<th>
 								<span class="glyphicon glyphicon-plus span_clickable" style="display: none" data-toggle="tooltip" data-placement="top" title="Discriptor hinzufügen"></span>
 							</th>
+-->
 						</tr>
 					</thead>
                     
@@ -84,11 +90,13 @@
 								<span class="glyphicon glyphicon-plus span_clickable" data-toggle="tooltip" data-placement="top" title="positive Mitarbeit hinzufügen"></span>
 								<span class="glyphicon glyphicon-minus span_clickable" data-toggle="tooltip" data-placement="top" title="negative Mitarbeit hinzufügen"></span>
 							</td>
-							<td></td>
+							
 						</tr>
                         
 					</tbody>
 				</table>
 			</div>
 		</div>
+    
+    {{> competenceModalTemplate}}
 </template>

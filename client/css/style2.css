@@ -727,6 +727,10 @@ th span {
 		margin: auto;
 	}
 
+.studentlist-all-selected li {
+    background-color: #;
+}
+
 #studentlist_header {
 	background-color: #ffffff;
 }
