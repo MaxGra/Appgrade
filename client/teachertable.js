@@ -9,14 +9,28 @@ Template.teachertable.events({
     }
 });
 
+//Template.teachertable.helpers({
+//    usernames: function () {
+//      return username.select().fetch();
+//    },
+//    subjects: function() {
+//          return subject.select().fetch();
+//    },
+//    descriptors: function() {
+//          return descriptor.select().fetch();
+//    }
+//});
+
 Template.teachertable.helpers({
-    usernames: function () {
-      return username.select().fetch();
-    },
-    subjects: function() {
-          return subject.select().fetch();
-    },
-    descriptors: function() {
-          return descriptor.select().fetch();
+    competences: function () {
+        console.log(this[0]);
+        console.log(this);
+      return this[0];
     }
 });
+
+//Template.teachertable.helpers({
+//    competences: function () {
+//      return competence.select().fetch();
+//    }
+//});

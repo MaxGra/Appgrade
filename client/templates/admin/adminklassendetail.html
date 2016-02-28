@@ -1,0 +1,99 @@
+<template name="adminklassendetail">
+    <div id="container_students">
+			<table>
+				<tr>
+					<th>
+						<h4>Angemeldete Schüler:</h4>
+					</th>
+					<th>
+						<h4>Alle Schüler:</h4>
+					</th>
+				</tr>
+				<tr>
+					<td>
+						<div class="studentlist">
+							<ul>
+								<li>
+									<p>
+										NACHNAME Vorname
+										
+									</p>
+									<hr/>
+								</li>
+								<li>
+									<p>
+										NACHNAME Vorname
+										
+									</p>
+									<hr/>
+								</li>
+								<li>
+									<p>
+										NACHNAME Vorname
+										
+									</p>
+									<hr/>
+								</li>
+								<li>
+									<p>
+										NACHNAME Vorname
+										
+									</p>
+									<hr/>
+								</li>
+								<li>
+									<p>
+										NACHNAME Vorname
+										
+									</p>
+									<hr/>
+								</li>
+								<li>
+									<p>
+										NACHNAME Vorname
+										
+									</p>
+									<hr/>
+								</li>
+								<li>
+									<p>
+										NACHNAME Vorname
+										
+									</p>
+									<hr/>
+								</li>
+								<li>
+									<p>
+										NACHNAME Vorname
+										
+									</p>
+									<hr/>
+								</li>
+							</ul>
+						</div>
+					</td>
+					<td>
+						<div class="studentlist">
+							<ul>
+                                {{#each allstudents}}
+								<li>
+									<p>
+                                        {{username}}
+                                        {{lastName}}
+                                        {{firstName}}
+                                        {{_id}}
+									</p>
+									<hr/>
+								</li>
+                                {{/each}}
+							</ul>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<div id="studentlist_controllpanel">
+				<button type="button" class="btn ag_button-success">bestätigen</button>
+				<button type="button" class="btn ag_button-cancel">abbrechen</button>
+			</div>
+		</div>
+</template>

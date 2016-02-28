@@ -671,3 +671,119 @@ th span {
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 
 
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+/* ADD STUDENT TO CLASS */
+
+#container_students {
+	width: 90%;
+	margin: auto;
+}
+
+#container_students table {
+	width: 100%;
+	background-color: #ffffff;
+	margin: auto;
+}
+
+	#container_students tr th h4 {
+		background-color: #ffffff;
+		padding: 10px 10px 10px 10px;
+	}
+
+.studentlist {
+	height: 300px;
+	overflow-y: scroll;
+	
+	background-color: #ffffff;
+}
+
+.studentlist ul {
+	text-align:left;
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+}
+	
+	.studentlist li {
+		text-align:left;
+		list-style-type: none;
+		margin: 0px;
+	}
+	
+		.studentlist li p {	
+			text-align:left;
+			list-style-type: none;
+			margin: 0px;
+			padding: 20px 50px 20px 20px;
+		}
+	
+	.studentlist li:hover {
+		background-color: #efefef;
+	}
+	
+	.studentlist hr {
+		width: 95%;
+		margin: auto;
+	}
+
+#studentlist_header {
+	background-color: #ffffff;
+}
+
+#studentlist_header div {
+	display: inline;
+}
+
+.conainer_studentlist {
+	width: 50%;
+	background-color: #ffffff;
+}
+
+
+.conainer_studentlist h4 {
+	margin: 20px;
+}
+
+#studentlist_controllpanel {
+	width: 100%;
+	background-color: #ffffff;
+	
+	clear:both;
+	padding: 20px;
+	margin: auto;
+}
+
+	#studentlist_controllpanel button{
+		margin: 10px;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+
+

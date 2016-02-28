@@ -11,6 +11,7 @@
 					</tr>
 				</thead>
 				<tbody>
+<!--
 					<tr>
 						<td>AI</td>
 						<td>1I</td>
@@ -27,6 +28,13 @@
 						<td>DI</td>
 						<td>1I</td>
 					</tr>
+-->
+                    {{#each classes}}
+                    <tr class="classlink" data-link="{{classid}}" name="classlinkName">
+                        <td>{{classdesc}}</td>
+                        <td>{{yearsdesc}}</td>
+                        </tr>
+                    {{/each}}
 				</tbody>
 			</table>
 		</div>

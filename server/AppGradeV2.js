@@ -57,20 +57,24 @@ years.publish('years', function(){
     return years.select('yearsid', 'yearsdesc').limit(100);
   });
 //
-//classes.publish('class', function(){
-//    return classes.select('classid', 'yearsyearsid', 'classdesc').limit(100);
-//  });
+
+classes.publish('class', function(){
+    return classes.select('classid', 'yearsyearsid', 'classdesc', 'yearsdesc','yearsid')
+        .join(['INNER JOIN'], ["yearsyearsid"], [["years", 'yearsid']])
+        .limit(100);
+  });
 
 
 competence.publish('competence', function(){
     return competence.select('subjectid', 'subjectdesc', 'competenceid', 'subjectsubjectid', 'competencedesc', 'pointsmax')
         .join(['INNER JOIN'], ["subjectsubjectid"], [["subject", 'subjectid']])
+        .order('competenceid DESC')
         .limit(100);
   });
 
-//descriptor.publish('descriptor', function(){
-//    return descriptor.select('descriptorid', 'competencecompetenceid', 'descriptordesc', 'pointsmax').limit(100);
-//  });
+descriptor.publish('descriptor', function(){
+    return descriptor.select('descriptorid', 'competencecompetenceid', 'descriptordesc', 'pointsmax').limit(100);
+  });
 
 //studenthasclass.publish('studenthasclass', function(){
 //    return studenthasclass.select('studenthasclassid', 'classclassid', 'userid').limit(100);
@@ -98,5 +102,9 @@ Accounts.onCreateUser(function(options, user) {
   user.usertype = options.usertype;
   return user;
 });
+
+Meteor.publish('userData', function() {
+   return Meteor.users.find({}, {fields:{'_id':1,'username':1,'firstName':1,'lastName':1,'usertype':1}})
+ })
 
 

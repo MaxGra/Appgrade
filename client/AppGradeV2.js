@@ -27,9 +27,9 @@ studenthasdescriptor = new SQL.Collection('studenthasdescriptor', 'postgres://po
     var subjectTable = {
         subjectid: ['$number'],
         yearsyearsid: ['$number'],
-        subjectdesc: ['$string', '$notnull']/*,
-        yearsid: ['$number'],
-        yearsdesc: ['$string', '$notnull']*/
+        subjectdesc: ['$string', '$notnull'],
+//        yearsid: ['$number'],
+//        yearsdesc: ['$string', '$notnull']
     };
 
     var teacherhassubjectTable  = {
@@ -44,18 +44,20 @@ studenthasdescriptor = new SQL.Collection('studenthasdescriptor', 'postgres://po
         competencedesc: ['$string', '$notnull'],
         pointsmax: ['$number']
     };
-//
-//    var descriptorTable = {
-//        descriptorid: ['$number'],
-//        competencecompetenceid: ['$number'],
-//        descriptordesc: ['$string', '$notnull'],
-//        pointsmax: ['$number']
-//    };
-//
+
+    var descriptorTable = {
+        descriptorid: ['$number'],
+        competencecompetenceid: ['$number'],
+        descriptordesc: ['$string', '$notnull'],
+        pointsmax: ['$number']
+    };
+
     var classTable = {
         classid: ['$number'],
         yearsyearsid: ['$number'],
-        classdesc: ['$string', '$notnull']
+        classdesc: ['$string', '$notnull'],
+        yearsid: ['$number'],
+        yearsdesc: ['$string', '$notnull']
    };
 
 //    var teacherhassubjectTable = {
@@ -95,7 +97,7 @@ studenthasdescriptor = new SQL.Collection('studenthasdescriptor', 'postgres://po
 
     competence.createTable(competenceTable);
 //
-//    descriptor.createTable(descriptorTable);
+  descriptor.createTable(descriptorTable);
 //
     classes.createTable(classTable);
 
@@ -179,5 +181,10 @@ studenthasdescriptor = new SQL.Collection('studenthasdescriptor', 'postgres://po
       tasks.reactiveData.changed();
     }
   });
+
+Tracker.autorun(function () {
+    Meteor.subscribe("userData");
+});
+
 
 
