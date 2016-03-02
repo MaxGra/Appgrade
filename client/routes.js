@@ -113,8 +113,13 @@ Router.route('/kurse/:_id',function(){
             this.render('teachertable', {
             data: function(){
                 var currentid = this.params._id;
+                Session.set('selectedSubject', currentid);
                 var id = Number(currentid);
                 var competencesdata = competence.select().where('subjectsubjectid= ?', id).fetch();
+               
+                
+                
+                
                     for (var i = 0; i < competencesdata.length; i++) {
                         var compid = competencesdata[i].competenceid;
                         var descriptordata = descriptor.select().where('competencecompetenceid= ?', compid).fetch();

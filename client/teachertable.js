@@ -1,21 +1,41 @@
 Template.teachertable.events({
     "click .kompedit": function(event) {
+        event.preventDefault();
         $('.kompstatemode').addClass("hide");
         $('.kompeditmode').removeClass("hide");
     },
     "click .kompsafe": function(event) {
+        event.preventDefault();
         $('.kompeditmode').addClass("hide");
         $('.kompstatemode').removeClass("hide");
     },
-    'click .editcomp': function(event) {
-    event.preventDefault();
-    
-    $('#competenceModal').modal('show');
+    "click .editcomp": function(event) {
+        event.preventDefault();
+
+        var selectedcomp = event.target.getAttribute('data-compid')
+        Session.set('selectedCompetence', selectedcomp);
         
-    var selectedcomp = event.target.getAttribute('data-compid')
-    Session.set('selectedCompetence', selectedcomp);
         console.log(selectedcomp);
-  }
+        
+        $('#competenceModal').modal('show');
+    },
+    "click .newcomp": function(event) {
+        event.preventDefault();
+        
+        var selectedSubject = Session.get('selectedSubject');
+        selectedSubject = Number(selectedSubject);
+        
+        var pointsmaxVar= 100;
+        
+        Meteor.call('insertcompetence',selectedSubject,pointsmaxVar, function(error,result){
+            if (result == true){
+              Meteor._reload.reload(); 
+            }
+        });
+        
+        //Meteor._reload.reload();
+        
+    }
 });
 
 //Template.teachertable.helpers({

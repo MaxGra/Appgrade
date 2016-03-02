@@ -24,6 +24,7 @@ Template.adminklassen.events({
             yearsyearsid: jahrgangsel,
             classdesc: classinput
         }).save();
+            Meteor._reload.reload();
         }
     },
     "click .classlink": function(event) {
