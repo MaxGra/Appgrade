@@ -6,7 +6,7 @@ Router.route('/',{
         if(currentUser){
             if(Meteor.user().usertype == "teacher"){
                 this.layout("teacherlayout");
-                this.render("teacherselect");
+                this.render("teacherkurse");
             }
             if(Meteor.user().usertype == "student"){
                 this.layout("studentlayout");
@@ -35,7 +35,13 @@ Router.route('/klassen',{
         if(currentUser){
         if(Meteor.user().usertype == "admin"){
             this.layout("adminlayout");
-            this.render('adminklassen');
+            this.render('adminklassen',{
+                data: function(){
+                    var classdata = classes.select().fetch();
+                    var yearsdata = years.select().fetch();
+                    return [classdata,yearsdata];
+                }
+            });
         }
         else{
             this.render("forbidden");
@@ -43,7 +49,30 @@ Router.route('/klassen',{
       }
         else{
           Router.go("main");
+          this.next();
         }
+    }
+});
+
+Router.route('/klassen/:_id',{
+    name: "klassenid",
+    onBeforeAction: function () {
+        var currentUser = Meteor.userId();
+        if(currentUser){
+        if(Meteor.user().usertype == "admin"){
+            this.layout("adminlayout");
+            this.render('adminklassendetail');
+            
+        }
+        else{
+            this.render("forbidden");
+            this.next();
+        }
+      }
+        else{
+          Router.go("main");
+          this.next();
+        }    
     }
 });
 
@@ -65,6 +94,60 @@ Router.route('/kurse',{
         }
     }
 });
+
+//Router.route('/posts/:_id', function() {
+//    this.render('post', {
+//    data: function(){  
+//     var test = competence.select().fetch();
+//        console.log(test);
+//        return test;
+//    }
+//  });  
+//});
+
+Router.route('/kurse/:_id',function(){
+    var currentUser = Meteor.userId();
+        if(currentUser){
+        if(Meteor.user().usertype == "teacher"){
+            this.layout("teacherlayout");
+            this.render('teachertable', {
+            data: function(){
+                var currentid = this.params._id;
+                var id = Number(currentid);
+                var competencesdata = competence.select().where('subjectsubjectid= ?', id).fetch();
+                    for (var i = 0; i < competencesdata.length; i++) {
+                        var compid = competencesdata[i].competenceid;
+                        var descriptordata = descriptor.select().where('competencecompetenceid= ?', compid).fetch();
+                        
+                        competencesdata[i].descriptors= descriptordata;
+                    }
+                return [competencesdata];
+                }
+            });  
+        }
+        else{
+            this.render("forbidden");
+        }
+      }
+        else{
+          Router.go("main");
+        }
+});
+
+
+//this.layout("teacherlayout");
+//    this.render('teachertable', {
+//    data: function(){
+//        var currentid = this.params._id;
+//        var id = Number(currentid);
+//        var competences = competence.select().where('subjectsubjectid= ?', id).fetch();
+//        console.log('test');
+//        var datas =[];
+//        return [competence.select().where('subjectsubjectid= ?', id).fetch(), {tests:{probe:'test'}}]
+//    }
+//});  
+
+
 
 Router.route('/mainteacher',{
     template: 'mainteacher',

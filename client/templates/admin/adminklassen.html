@@ -11,6 +11,7 @@
 					</tr>
 				</thead>
 				<tbody>
+<!--
 					<tr>
 						<td>AI</td>
 						<td>1I</td>
@@ -27,6 +28,13 @@
 						<td>DI</td>
 						<td>1I</td>
 					</tr>
+-->
+                    {{#each classes}}
+                    <tr class="classlink" data-link="{{classid}}" name="classlinkName">
+                        <td>{{classdesc}}</td>
+                        <td>{{yearsdesc}}</td>
+                        </tr>
+                    {{/each}}
 				</tbody>
 			</table>
 		</div>
@@ -36,33 +44,24 @@
 			Neu:
 				<br/>
 			<span class="pull-left">
-				<input type="text" class="form-control" placeholder="Klasse..."/>
+				<input type="text" class="form-control classinput" name="classinput" placeholder="Klasse..." />
 			</span>
 			<span class="pull-left">
-				<select class="form-control">
-					<option>Jahrgang...</option>
-					<option>1 I</option>
-					<option>2 I</option>
-					<option>3 I</option>
-					<option>4 I</option>
-					<option>5 I</option>
-					<option>4 DN</option>
-					<option>5 DN</option>
-					<option>4 AX</option>
-					<option>5 AX</option>
-					<option>1 M</option>
-					<option>2 M</option>
-					<option>3 M</option>
-					<option>4 M</option>
-					<option>5 M</option>
-					<option>1 F</option>
-					<option>2 F</option>
-					<option>3 F</option>
-					<option>4 F</option>
+				<select class="form-control selectedyear" name="selectedclass">
+                    
+                    {{#each years}}
+                    
+                    <option data-yearsid="{{yearsid}}">{{yearsdesc}}</option>
+                    
+                    {{/each}}
+                    
 				</select>
 			</span>
 			<span class="pull-left">
-				<button type="button" class="btn ag_button_alt">bestätigen</button>
+				<button type="button" class="addclass btn ag_button_alt" name="addclass">bestätigen</button>
+			</span>
+            <span class="pull-left inputerror hide">
+				<p>Keine Klasse angegeben!</p>
 			</span>
 		</div>
 </template>

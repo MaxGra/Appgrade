@@ -39,7 +39,7 @@ studenthasdescriptor = new SQL.Collection('studenthasdescriptor', 'postgres://po
 //                .where("userid = 'ceic34fLMYPp7bFit'")
 //  });
 
-subject.publish('subject', function(){5
+subject.publish('subject', function(){
     return subject.select('yearsid', 'yearsdesc', 'subjectid', 'yearsyearsid', 'subjectdesc')
                 .join(['INNER JOIN'], ["yearsyearsid"], [["years", 'yearsid']])
                 .limit(100);
@@ -54,23 +54,27 @@ teacherhassubject.publish('teacherhassubject', function(){
 //  });
 
 years.publish('years', function(){
-    return years.select('yearsid', 'yearsdesc').limit(100);
+    return years.select('yearsid', 'yearsdesc').order('yearsid DESC').limit(100);
   });
+//
 
-//classes.publish('class', function(){
-//    return classes.select('classid', 'yearsyearsid', 'classdesc').limit(100);
-//  });
+classes.publish('class', function(){
+    return classes.select('classid', 'yearsyearsid', 'classdesc', 'yearsdesc','yearsid')
+        .join(['INNER JOIN'], ["yearsyearsid"], [["years", 'yearsid']])
+        .limit(100);
+  });
 
 
 competence.publish('competence', function(){
     return competence.select('subjectid', 'subjectdesc', 'competenceid', 'subjectsubjectid', 'competencedesc', 'pointsmax')
         .join(['INNER JOIN'], ["subjectsubjectid"], [["subject", 'subjectid']])
+        .order('competenceid DESC')
         .limit(100);
   });
 
-//descriptor.publish('descriptor', function(){
-//    return descriptor.select('descriptorid', 'competencecompetenceid', 'descriptordesc', 'pointsmax').limit(100);
-//  });
+descriptor.publish('descriptor', function(){
+    return descriptor.select('descriptorid', 'competencecompetenceid', 'descriptordesc', 'pointsmax').order('descriptorid DESC').limit(100);
+  });
 
 //studenthasclass.publish('studenthasclass', function(){
 //    return studenthasclass.select('studenthasclassid', 'classclassid', 'userid').limit(100);
@@ -98,5 +102,9 @@ Accounts.onCreateUser(function(options, user) {
   user.usertype = options.usertype;
   return user;
 });
+
+Meteor.publish('userData', function() {
+   return Meteor.users.find({}, {fields:{'_id':1,'username':1,'firstName':1,'lastName':1,'usertype':1}})
+ })
 
 
