@@ -63,12 +63,16 @@
                     
                     
 					<tbody>
+                        {{#each dataset}}
+                            
 						<tr>
+                            
 							<td class="cell_name">
-								#1
 								<br/>
-								<img src="/avatars/avatar.jpg" class="avatar" width="80" height="80"/>Tomas Testo
+								<img src="/avatars/avatar.jpg" class="avatar" width="80" height="80"/>{{student.lastName}} {{student.firstName}}
 							</td>
+                            
+<!--
 							<td class="success">
 								40/40
 								<div class="timeline">
@@ -90,8 +94,22 @@
 								<span class="glyphicon glyphicon-plus span_clickable" data-toggle="tooltip" data-placement="top" title="positive Mitarbeit hinzufügen"></span>
 								<span class="glyphicon glyphicon-minus span_clickable" data-toggle="tooltip" data-placement="top" title="negative Mitarbeit hinzufügen"></span>
 							</td>
+-->
+                            
+                            {{#each competencesdata}}
+                                {{#each descriptorsdata}}
+                                    <td class="{{status}}">
+                                        {{pointsreached}}/{{pointsmax}}
+                                        <div class="timeline">
+                                        </div>
+                                        <span class="glyphicon glyphicon-plus span_clickable pluspoints" data-userid="{{../../student._id}}"  data-descid="{{descriptorid}}" title="positive Mitarbeit hinzufügen"></span>
+                                        <span class="glyphicon glyphicon-minus span_clickable minuspoints" data-userid="{{../../student._id}}" data-descid="{{descriptorid}}" title="negative Mitarbeit hinzufügen"></span>
+                                    </td>
+                                {{/each}}
+                            {{/each}}
 							
 						</tr>
+                        {{/each}}
                         
 					</tbody>
 				</table>

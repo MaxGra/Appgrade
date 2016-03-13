@@ -22,9 +22,44 @@ Template.competenceModalTemplate.events({
         $(event.target).parent().parent().find('.showdesc').addClass('mode_edit');
         $(event.target).parent().parent().find('.editdesc').removeClass('mode_edit');
     },
+    "click .clickdelete": function(event){
+        var selecteddesc = event.target.getAttribute('data-descid');
+        selecteddesc = Number(selecteddesc);
+        
+          descriptor.remove()
+         .where("descriptorid = ?", selecteddesc)
+         .save();
+        
+        
+    },
+    "click .clickrevert": function(event){
+        $(event.target).parent().parent().find('.showdesc').removeClass('mode_edit');
+        $(event.target).parent().parent().find('.editdesc').addClass('mode_edit');         
+    },
     "click .clicksave": function(event){
         $(event.target).parent().parent().find('.showdesc').removeClass('mode_edit');
         $(event.target).parent().parent().find('.editdesc').addClass('mode_edit'); 
+        
+        var newdescdesc = $(event.target).parent().parent().find('.descdesc.editdesc').val();
+        
+        var newdescpoints = $(event.target).parent().parent().find('.descpoints.editdesc').val();
+        
+        var selecteddesc = event.target.getAttribute('data-descid');
+        selecteddesc = Number(selecteddesc);
+        
+        var selectedCompetence = Session.get('selectedCompetence'); 
+        selectedCompetence = Number(selectedCompetence);
+        
+        descriptor.update({
+            descriptordesc: newdescdesc,
+            pointsmax: newdescpoints})
+            .where('descriptorid = ?',selecteddesc)
+            .save();
+        
+         Meteor.call('updatedescriptor',selecteddesc,newdescdesc,newdescpoints, function(error,result){
+                });
+        
+        console.log(selecteddesc,newdescdesc,newdescpoints);
     },
     "click .saveall": function(event){
         var selectedCompetence = Session.get('selectedCompetence');
@@ -63,6 +98,13 @@ Template.competenceModalTemplate.events({
                 pointsmax: newdescpoints
             }).save();
             
+//            Meteor.call('insertdescriptor',selectedCompetence,newdescdesc,newdescpoints, function(error,result){
+//            if (result == true){
+//              //Meteor._reload.reload();
+//                console.log('inserted');
+//            }
+//        });
+  
         }else{
             console.log("error");
         }

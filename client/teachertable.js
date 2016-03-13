@@ -35,6 +35,26 @@ Template.teachertable.events({
         
         //Meteor._reload.reload();
         
+    },
+    "click .pluspoints": function(event){
+        event.preventDefault();
+        var userid = event.target.getAttribute('data-userid');
+        var selecteddesc = event.target.getAttribute('data-descid');
+        
+        console.log(userid,selecteddesc);
+        
+//        studenthasdescriptor.update({
+//        descriptordescriptorid: selecteddesc,
+//        userid: userid,
+//        pointsreached: ['$number']
+//        }).save();
+    },
+    "click .minuspoints": function(event){
+        event.preventDefault();
+        var userid = event.target.getAttribute('data-userid');
+        var selecteddesc = event.target.getAttribute('data-descid');
+        
+        console.log(userid,selecteddesc);
     }
 });
 
@@ -52,9 +72,12 @@ Template.teachertable.events({
 
 Template.teachertable.helpers({
     competences: function () {
-        console.log(this[0]);
-        console.log(this);
+        console.log("competences",this[0]);
       return this[0];
+    },
+    dataset: function(){
+        console.log("dataset",this[1]);
+        return this[1];
     }
 });
 

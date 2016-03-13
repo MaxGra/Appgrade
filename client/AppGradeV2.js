@@ -28,8 +28,8 @@ studenthasdescriptor = new SQL.Collection('studenthasdescriptor', 'postgres://po
         subjectid: ['$number'],
         yearsyearsid: ['$number'],
         subjectdesc: ['$string', '$notnull'],
-//        yearsid: ['$number'],
-//        yearsdesc: ['$string', '$notnull']
+        yearsid: ['$number'],
+        yearsdesc: ['$string', '$notnull']
     };
 
     var teacherhassubjectTable  = {
@@ -66,11 +66,11 @@ studenthasdescriptor = new SQL.Collection('studenthasdescriptor', 'postgres://po
 //        userid: ['$string', '$notnull']
 //    };
 
-//    var studenthasclassTable = {
-//        studenthasclassid: ['$number'],
-//        classclassid: ['$number'],
-//        userid: ['$string', '$notnull']
-//    };
+    var studenthasclassTable = {
+        studenthasclassid: ['$number'],
+        classclassid: ['$number'],
+        userid: ['$string', '$notnull']
+    };
 //
 //    var studenthascompetenceTable = {
 //        studenthascompetenceid: ['$number'],
@@ -79,12 +79,12 @@ studenthasdescriptor = new SQL.Collection('studenthasdescriptor', 'postgres://po
 //        pointserached: ['$number']
 //    };
 //
-//    var studenthasdescriptorTable = {
-//        studenthasdescriptorid: ['$number'],
-//        descriptordescriptorid: ['$number'],
-//        userid: ['$string', '$notnull'],
-//        pointserached: ['$number']
-//    };
+    var studenthasdescriptorTable = {
+        studenthasdescriptorid: ['$number'],
+        descriptordescriptorid: ['$number'],
+        userid: ['$string', '$notnull'],
+        pointsreached: ['$number']
+    };
 
 //_______________________________________________
 
@@ -103,39 +103,17 @@ studenthasdescriptor = new SQL.Collection('studenthasdescriptor', 'postgres://po
 
 //    teacherhassubject.createTable(teacherhassubjectTable);
 
-//    studenthasclass.createTable(studenthasclassTable);
+    studenthasclass.createTable(studenthasclassTable);
 //
 //    studenthascompetence.createTable(studenthascompetenceTable);
 //
-//    studenthasdescriptor.createTable(studenthasdescriptorTable);
+ studenthasdescriptor.createTable(studenthasdescriptorTable);
 
 
 
 //_______________________________________________
 
 
-
-  Template.test.helpers({
-    usernames: function () {
-      return username.select().fetch();
-    },
-      subjects: function() {
-          return subject.select().fetch();
-    } /*,
-    tasks: function () {
-      if (newUser === 'all'){
-          return tasks.select('tasks.id', 'tasks.text', 'tasks.checked', 'tasks.created_at', 'username.name')
-            .join(['OUTER JOIN'], ['usernameid'], [['username', ['id']]])
-            .fetch();
-      }
-      else {
-        return tasks.select('id', 'text', 'checked', 'username.name')
-          //.join(['OUTER JOIN'], ['usernameid'], [['username', ['id']]])
-         // .where("name = ?", newUser)
-          .fetch();
-      }
-    }*/
-  });
 
 
   Template.test.events({

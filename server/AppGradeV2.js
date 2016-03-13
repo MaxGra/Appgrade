@@ -14,7 +14,7 @@ teacherhassubject = new SQL.Collection('teacherhassubject', 'postgres://postgres
 
 studenthasclass = new SQL.Collection('studenthasclass', 'postgres://postgres:pass@localhost/meteor');
 
-studenthascompetence = new SQL.Collection('studenthascompetence', 'postgres://postgres:pass@localhost/meteor');
+//studenthascompetence = new SQL.Collection('studenthascompetence', 'postgres://postgres:pass@localhost/meteor');
 
 studenthasdescriptor = new SQL.Collection('studenthasdescriptor', 'postgres://postgres:pass@localhost/meteor');
 
@@ -26,6 +26,11 @@ studenthasdescriptor = new SQL.Collection('studenthasdescriptor', 'postgres://po
 //        yearsyearsid:5,
 //        classdesc: "TES"
 //}).save();
+
+//descriptor.insert({
+//        competencecompetenceid: 10,
+//        descriptordesc: 'testdesc',
+//        pointsmax: 10}).save();
 
 //_______________________________________________
 
@@ -71,12 +76,18 @@ teacherhassubject.publish('teacherhassubject', function(){
 years.publish('years', function(){
     return years.select('yearsid', 'yearsdesc').order('yearsid DESC').limit(100);
   });
-//
+
 
 classes.publish('class', function(){
     return classes.select('classid', 'yearsyearsid', 'classdesc', 'yearsdesc','yearsid')
         .join(['INNER JOIN'], ["yearsyearsid"], [["years", 'yearsid']])
         .limit(100);
+  });
+
+
+
+descriptor.publish('descriptor', function(){
+    return descriptor.select('descriptorid', 'competencecompetenceid', 'descriptordesc', 'pointsmax').order('descriptorid DESC').limit(100);
   });
 
 competence.publish('competence', function(){
@@ -92,22 +103,17 @@ competence.publish('competence', function(){
 //  });
 
 
-
-descriptor.publish('descriptor', function(){
-    return descriptor.select('descriptorid', 'competencecompetenceid', 'descriptordesc', 'pointsmax').order('descriptorid DESC').limit(100);
+studenthasclass.publish('studenthasclass', function(){
+    return studenthasclass.select('studenthasclassid', 'classclassid', 'userid').limit(100);
   });
-
-//studenthasclass.publish('studenthasclass', function(){
-//    return studenthasclass.select('studenthasclassid', 'classclassid', 'userid').limit(100);
-//  });
 //
 //studenthascompetence.publish('studenthascompetence', function(){
 //    return studenthascompetence.select('studenthascompetenceid', 'competencecompetenceid', 'userid', 'pointsreached').limit(100);
 //  });
 //
-//studenthasdescriptor.publish('studenthasdescriptor', function(){
-//    return studenthasdescriptor.select('studenthasdescriptorid', 'descriptordescriptorid', 'userid', 'pointsreached').limit(100);
-//  });
+studenthasdescriptor.publish('studenthasdescriptor', function(){
+    return studenthasdescriptor.select('studenthasdescriptorid', 'descriptordescriptorid', 'pointsreached', 'userid').limit(100);
+  });
 
 
 //_______________________________________________
@@ -130,6 +136,9 @@ descriptor.publish('descriptor', function(){
          .save(); 
      },
      'deletecompetence': function(id){
+        descriptor.remove()
+         .where("competencecompetenceid = ?", id)
+         .save();
          competence.remove()
          .where("competenceid = ?", id)
          .save();
@@ -142,6 +151,24 @@ descriptor.publish('descriptor', function(){
         pointsmax: pointsmaxVar
         }).save();
         return true;
+     },
+     'insertdescriptor': function(selectedCompetence,newdescdesc,newdescpoints){
+        descriptor.insert({
+        competencecompetenceid: selectedCompetence,
+        descriptordesc: newdescdesc,
+        pointsmax: newdescpoints
+        }).save();
+        return true;
+     },
+     'updatedescriptor': function(selecteddesc,newdescdesc,newdescpoints){
+        descriptor.update({
+        descriptordesc: newdescdesc,
+        pointsmax: newdescpoints})
+        .where('descriptorid = ?',selecteddesc)
+        .save();         
+     },
+     'getdescriptorpoints': function(userid){
+         return studenthasdescriptor.select().where('userid = ?', userid).limit(100);
      }
 });
 

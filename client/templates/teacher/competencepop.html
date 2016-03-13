@@ -55,7 +55,7 @@
 							</td>
 							<td>
 								<span class="showdesc">{{descriptordesc}}</span>
-								<input type="text" class="editdesc form-control mode_edit" value="{{descriptordesc}}">
+								<input type="text" class="descdesc editdesc form-control mode_edit" value="{{descriptordesc}}">
 							</td>
 <!--
 							<td>
@@ -65,12 +65,13 @@
 -->
 							<td>
 								<span class="showdesc">{{pointsmax}}</span>
-								<input type="number" class="editdesc form-control mode_edit" value="{{pointsmax}}">
+								<input type="number" class="descpoints editdesc form-control mode_edit" value="{{pointsmax}}">
 							</td>
 							<td>
-								<span class="clickedit showdesc glyphicon glyphicon-edit span_clickable" data-toggle="tooltip" data-placement="top" title="Aufgabe bearbeiten"></span>
-								<span class="clicksave glyphicon editdesc glyphicon-floppy-saved span_clickable mode_edit" data-toggle="tooltip" data-placement="top" title="Änderungen speichern"></span>
+								<span class="clickedit showdesc glyphicon glyphicon-edit span_clickable" data-toggle="tooltip" data-placement="top" title="Deskriptor bearbeiten"></span>
+								<span class="clicksave glyphicon editdesc glyphicon-floppy-saved span_clickable mode_edit" data-toggle="tooltip" data-placement="top" title="Änderungen speichern" data-descid="{{descriptorid}}"></span>
 								<span class="clickrevert glyphicon editdesc glyphicon-floppy-remove span_clickable mode_edit" data-toggle="tooltip" data-placement="top" title="Änderungen verwerfen"></span>
+                                <span class="clickdelete glyphicon editdesc glyphicon-trash span_clickable mode_edit" data-toggle="tooltip" data-placement="top" title="Deskriptor löschen" data-descid="{{descriptorid}}"></span>
 							</td>
 						</tr>
                         {{/each}}
