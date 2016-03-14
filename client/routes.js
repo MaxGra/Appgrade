@@ -119,15 +119,6 @@ Router.route('/kurse/:_id/:_class',function(){
                 var id = Number(currentid);
                 var classid = Number(currentclass);
                 
-                var userid = "niK5vgpowNmsP2qrg"
-                var testid = 6;
-                
-//                Meteor.call('getdescriptorpoints',userid, function(error,result){
-//                    console.log("resulttest",result);
-//                });
-        var clientest = studenthasdescriptor.select().where('userid = ? AND descriptordescriptorid = ?', userid, testid).fetch();
-                console.log('clientest',clientest)
-                
                 var competencesdata = competence.select().where('subjectsubjectid= ?', id).fetch();
                     for (var i = 0; i < competencesdata.length; i++) {
                         var compid = competencesdata[i].competenceid;
@@ -154,8 +145,11 @@ Router.route('/kurse/:_id/:_class',function(){
                             if(pointsdata.length > 0){
                             
                             descriptorstudentsdata[k].pointsreached = pointsdata[0].pointsreached;
+                            descriptorstudentsdata[k].studhasdescid = pointsdata[0].studenthasdescriptorid;    
+                                
                             }else{
                             descriptorstudentsdata[k].pointsreached = 0;
+                            descriptorstudentsdata[k].studhasdescid = 0;
                             }
                             
                            if(descriptorstudentsdata[k].pointsreached < descriptorstudentsdata[k].pointsmax/2){
