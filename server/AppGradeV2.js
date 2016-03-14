@@ -14,12 +14,32 @@ teacherhassubject = new SQL.Collection('teacherhassubject', 'postgres://postgres
 
 studenthasclass = new SQL.Collection('studenthasclass', 'postgres://postgres:pass@localhost/meteor');
 
-studenthascompetence = new SQL.Collection('studenthascompetence', 'postgres://postgres:pass@localhost/meteor');
+//studenthascompetence = new SQL.Collection('studenthascompetence', 'postgres://postgres:pass@localhost/meteor');
 
 studenthasdescriptor = new SQL.Collection('studenthasdescriptor', 'postgres://postgres:pass@localhost/meteor');
 
+//competence.insert({
+//        subjectsubjectid: 5,
+//        competencedesc: "neue kompe",
+//        pointsmax: 100}).save();
+//classes.insert({
+//        yearsyearsid:5,
+//        classdesc: "TES"
+//}).save();
+
+//descriptor.insert({
+//        competencecompetenceid: 10,
+//        descriptordesc: 'testdesc',
+//        pointsmax: 10}).save();
 
 //_______________________________________________
+
+//competence.update({        
+//            competencedesc: "testkompe",
+//            pointsmax: 100})
+//            .where("competenceid = 14")
+//            .save();
+
 
 
 //teacherhassubject.insert({subjectid: 2, userid: 'test'}); -+
@@ -56,7 +76,7 @@ teacherhassubject.publish('teacherhassubject', function(){
 years.publish('years', function(){
     return years.select('yearsid', 'yearsdesc').order('yearsid DESC').limit(100);
   });
-//
+
 
 classes.publish('class', function(){
     return classes.select('classid', 'yearsyearsid', 'classdesc', 'yearsdesc','yearsid')
@@ -65,36 +85,100 @@ classes.publish('class', function(){
   });
 
 
-competence.publish('competence', function(){
-    return competence.select('subjectid', 'subjectdesc', 'competenceid', 'subjectsubjectid', 'competencedesc', 'pointsmax')
-        .join(['INNER JOIN'], ["subjectsubjectid"], [["subject", 'subjectid']])
-        .order('competenceid DESC')
-        .limit(100);
-  });
 
 descriptor.publish('descriptor', function(){
     return descriptor.select('descriptorid', 'competencecompetenceid', 'descriptordesc', 'pointsmax').order('descriptorid DESC').limit(100);
   });
 
-//studenthasclass.publish('studenthasclass', function(){
-//    return studenthasclass.select('studenthasclassid', 'classclassid', 'userid').limit(100);
+competence.publish('competence', function(){
+    return competence.select('competenceid', 'subjectsubjectid', 'competencedesc', 'pointsmax').order('competenceid DESC').limit(100);
+  });
+
+
+//competencewithsubject.publish('competence', function(){
+//    return competencewithsubject.select('subjectid', 'subjectdesc', 'competenceid', 'subjectsubjectid', 'competencedesc', 'pointsmax')
+//        .join(['INNER JOIN'], ["subjectsubjectid"], [["subject", 'subjectid']])
+//        .order('competenceid DESC')
+//        .limit(100);
 //  });
+
+
+studenthasclass.publish('studenthasclass', function(){
+    return studenthasclass.select('studenthasclassid', 'classclassid', 'userid').limit(100);
+  });
 //
 //studenthascompetence.publish('studenthascompetence', function(){
 //    return studenthascompetence.select('studenthascompetenceid', 'competencecompetenceid', 'userid', 'pointsreached').limit(100);
 //  });
 //
-//studenthasdescriptor.publish('studenthasdescriptor', function(){
-//    return studenthasdescriptor.select('studenthasdescriptorid', 'descriptordescriptorid', 'userid', 'pointsreached').limit(100);
-//  });
+studenthasdescriptor.publish('studenthasdescriptor', function(){
+    return studenthasdescriptor.select('studenthasdescriptorid', 'descriptordescriptorid', 'pointsreached', 'userid').limit(100);
+  });
 
 
 //_______________________________________________
 
 
+//Servermethoden (Insert,Update,...)
+
+ Meteor.methods({
+    'getcompetences': function(id){
+        return competence.select('subjectid', 'subjectdesc', 'competenceid', 'subjectsubjectid', 'competencedesc', 'pointsmax')
+        .join(['INNER JOIN'], ["subjectsubjectid"], [["subject", 'subjectid']])
+        .order('competenceid DESC')
+        .limit(100);
+    },
+     'updatecompetence': function(id,desc,points){
+         competence.update({        
+         competencedesc: desc,
+         pointsmax: points})
+         .where("competenceid = ?", id)
+         .save(); 
+     },
+     'deletecompetence': function(id){
+        descriptor.remove()
+         .where("competencecompetenceid = ?", id)
+         .save();
+         competence.remove()
+         .where("competenceid = ?", id)
+         .save();
+         return true;
+     },
+     'insertcompetence': function(selectedSubject,pointsmaxVar){
+        competence.insert({
+        subjectsubjectid: selectedSubject,
+        competencedesc: "Neue Kompetenz",
+        pointsmax: pointsmaxVar
+        }).save();
+        return true;
+     },
+     'insertdescriptor': function(selectedCompetence,newdescdesc,newdescpoints){
+        descriptor.insert({
+        competencecompetenceid: selectedCompetence,
+        descriptordesc: newdescdesc,
+        pointsmax: newdescpoints
+        }).save();
+        return true;
+     },
+     'updatedescriptor': function(selecteddesc,newdescdesc,newdescpoints){
+        descriptor.update({
+        descriptordesc: newdescdesc,
+        pointsmax: newdescpoints})
+        .where('descriptorid = ?',selecteddesc)
+        .save();         
+     },
+     'getdescriptorpoints': function(userid){
+         return studenthasdescriptor.select().where('userid = ?', userid).limit(100);
+     }
+});
+
+
+//Mongodb Test
 
 Houston.add_collection(Meteor.users);
 Houston.add_collection(Houston._admins);
+
+//Registeruser Helper
 
 Accounts.onCreateUser(function(options, user) {
   user.firstName = options.firstName;
@@ -103,8 +187,12 @@ Accounts.onCreateUser(function(options, user) {
   return user;
 });
 
+//Find all User in Meteor Users
+
 Meteor.publish('userData', function() {
    return Meteor.users.find({}, {fields:{'_id':1,'username':1,'firstName':1,'lastName':1,'usertype':1}})
  })
+
+
 
 

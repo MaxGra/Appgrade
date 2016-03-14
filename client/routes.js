@@ -105,7 +105,7 @@ Router.route('/kurse',{
 //  });  
 //});
 
-Router.route('/kurse/:_id',function(){
+Router.route('/kurse/:_id/:_class',function(){
     var currentUser = Meteor.userId();
         if(currentUser){
         if(Meteor.user().usertype == "teacher"){
@@ -113,7 +113,21 @@ Router.route('/kurse/:_id',function(){
             this.render('teachertable', {
             data: function(){
                 var currentid = this.params._id;
+                var currentclass = this.params._class;
+                Session.set('selectedSubject', currentid);
+                Session.set('selectedClass', currentclass);
                 var id = Number(currentid);
+                var classid = Number(currentclass);
+                
+                var userid = "niK5vgpowNmsP2qrg"
+                var testid = 6;
+                
+//                Meteor.call('getdescriptorpoints',userid, function(error,result){
+//                    console.log("resulttest",result);
+//                });
+        var clientest = studenthasdescriptor.select().where('userid = ? AND descriptordescriptorid = ?', userid, testid).fetch();
+                console.log('clientest',clientest)
+                
                 var competencesdata = competence.select().where('subjectsubjectid= ?', id).fetch();
                     for (var i = 0; i < competencesdata.length; i++) {
                         var compid = competencesdata[i].competenceid;
@@ -121,7 +135,55 @@ Router.route('/kurse/:_id',function(){
                         
                         competencesdata[i].descriptors= descriptordata;
                     }
-                return [competencesdata];
+                
+                var studentsdata = [];
+                var studentinclassdata = studenthasclass.select().where('classclassid= ?', classid).fetch();
+                for (var j = 0; j < studentinclassdata.length; j++){
+                    var studentid = studentinclassdata[j].userid;
+                    var student = Meteor.users.findOne({_id : studentid},{fields:{'firstName':1,'lastName':1}});
+                    
+                    var competencesstudentdata = competence.select().where('subjectsubjectid= ?', id).fetch();
+                    for (var i = 0; i < competencesstudentdata.length; i++) {
+                        var compid1 = competencesstudentdata[i].competenceid;
+                        var descriptorstudentsdata = descriptor.select().where('competencecompetenceid= ?', compid1).fetch();
+                        
+                        for(var k = 0; k < descriptorstudentsdata.length; k++){
+                            
+                            var pointsdata = studenthasdescriptor.select().where('userid = ? AND descriptordescriptorid = ?', studentid, descriptorstudentsdata[k].descriptorid).fetch();
+                            
+                            if(pointsdata.length > 0){
+                            
+                            descriptorstudentsdata[k].pointsreached = pointsdata[0].pointsreached;
+                            }else{
+                            descriptorstudentsdata[k].pointsreached = 0;
+                            }
+                            
+                           if(descriptorstudentsdata[k].pointsreached < descriptorstudentsdata[k].pointsmax/2){
+                               descriptorstudentsdata[k].status = "danger";
+                           };
+                           if(descriptorstudentsdata[k].pointsreached >= descriptorstudentsdata[k].pointsmax/2){
+                               descriptorstudentsdata[k].status = "warning";
+                           };
+                           if(descriptorstudentsdata[k].pointsreached == descriptorstudentsdata[k].pointsmax){
+                               descriptorstudentsdata[k].status = "success";
+                           }; 
+                            
+                        }
+                        
+                        competencesstudentdata[i].descriptorsdata= descriptorstudentsdata;
+                        
+                        
+                    }
+                    
+                    studentsdata.push({ 'student' : student, 'competencesdata' : competencesstudentdata });
+                    
+                    
+                    
+                }
+                
+                console.log('studentsdata',studentsdata);
+                
+                return [competencesdata,studentsdata];
                 }
             });  
         }

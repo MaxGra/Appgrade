@@ -4,19 +4,28 @@
       <div class="modal-content">
 
         <div class="modal-header">
-          <h4 class="modal-title">Kompetenz bearbeiten</h4>
+          <h3 class="modal-title">Kompetenz {{#each competences}}{{competencedesc}}{{/each}} bearbeiten</h3>
         </div>
 
         <div class="modal-body">
             
-            {{competence}}
-            
+            <h4>Kompetenz:</h4>
             {{#each competences}}
+            <div class="col-md-12">
+                <div class="col-md-6">
+                <input class="compdescnew form-control" value="{{competencedesc}}">
+                </div>
+                <div class="col-md-2">
+                <input type="number" class="comppointsnew form-control" value="{{pointsmax}}">
+                </div>
+                
+            </div>
+            {{/each}} 
             
-                <p>{{competencedesc}}</p>
+            <br />
+            <br />
             
-            {{/each}}
-         
+            <h4>Deskriptoren:</h4>
 				<table class="table table-bordered table-hover">
 					<thead>
 						<tr>
@@ -26,9 +35,11 @@
 							<th>
 								Beschreibung
 							</th>
+<!--
 							<th>
 								Deadline
 							</th>
+-->
 							<th>
 								Max. Punkte
 							</th>
@@ -37,35 +48,37 @@
 						</tr>
 					</thead>
 					<tbody>
+                        {{#each descriptors}}
 						<tr>
 							<td>
-								1
+								{{@index}}
 							</td>
 							<td>
-								<span class="mode_normal">Beschreibung der Aufgabe</span>
-								<textarea class="form-control mode_edit" rows="3"></textarea>
+								<span class="showdesc">{{descriptordesc}}</span>
+								<input type="text" class="descdesc editdesc form-control mode_edit" value="{{descriptordesc}}">
 							</td>
+<!--
 							<td>
 								<span class="mode_normal">30.01.2015</span>
 								<input type="date" class="form-control mode_edit">
 							</td>
+-->
 							<td>
-								<span class="mode_normal">60</span>
-								<input type="number" class="form-control mode_edit">
+								<span class="showdesc">{{pointsmax}}</span>
+								<input type="number" class="descpoints editdesc form-control mode_edit" value="{{pointsmax}}">
 							</td>
 							<td>
-								<span class="glyphicon glyphicon-edit span_clickable" data-toggle="tooltip" data-placement="top" title="Aufgabe bearbeiten"></span>
-								<span class="glyphicon glyphicon-floppy-saved span_clickable mode_edit" data-toggle="tooltip" data-placement="top" title="Änderungen speichern"></span>
-								<span class="glyphicon glyphicon-floppy-remove span_clickable mode_edit" data-toggle="tooltip" data-placement="top" title="Änderungen verwerfen"></span>
-	
+								<span class="clickedit showdesc glyphicon glyphicon-edit span_clickable" data-toggle="tooltip" data-placement="top" title="Deskriptor bearbeiten"></span>
+								<span class="clicksave glyphicon editdesc glyphicon-floppy-saved span_clickable mode_edit" data-toggle="tooltip" data-placement="top" title="Änderungen speichern" data-descid="{{descriptorid}}"></span>
+								<span class="clickrevert glyphicon editdesc glyphicon-floppy-remove span_clickable mode_edit" data-toggle="tooltip" data-placement="top" title="Änderungen verwerfen"></span>
+                                <span class="clickdelete glyphicon editdesc glyphicon-trash span_clickable mode_edit" data-toggle="tooltip" data-placement="top" title="Deskriptor löschen" data-descid="{{descriptorid}}"></span>
 							</td>
 						</tr>
+                        {{/each}}
 					</tbody>
 				</table>
 			
-			
-				<br/>
-			
+<!--
 			<h4>Mitarbeit:</h4>
 			<div class="table-responsive">
 				<table class="table table-bordered table-hover">
@@ -119,14 +132,32 @@
 					</tbody>
 				</table>
 			</div>
-
+-->
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <input type="text" class="newdescdesc form-control" placeholder="Neuer Deskriptor">
+                </div>
+                <div class="col-md-2">
+                    <input type="number" class="newdescpoints form-control" placeholder="Punkte">
+                </div>
+                <div class="col-md-2"></div>
+                <div class="col-md-2">
+                    <button type="button" class="createnewdesc btn btn-primary">Erstellen</button>
+                </div>
+            </div>
+            <br />
+            <br />
+          </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" id="save">Save</button>
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <button type="button" class="delall btn btn-danger pull-left" id="delete">Kompetenz löschen</button>
+          <button type="button" class="saveall btn btn-primary" id="save">Speichern</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Schließen</button>
         </div>
 
-      </div>
+      
     </div>
   </div>
     </div>
+    
+    {{> delcompetenceModalTemplate}}
 </template>

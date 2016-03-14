@@ -1,10 +1,30 @@
 Template.teacherkurse.helpers({
     dataset: function(){
-      return teacherhassubject.select('subject.yearsdesc', 'subject.subjectdesc', 'subject.subjectid')
-      .join(['OUTER JOIN'], ["subjectsubjectid"], [["subject", ['subjectid']]])
- //     .join(['OUTER JOIN'], ['yearsyearsid'], [['years', ['yearsid']]])
-      .where('userid = ceic34fLMYPp7bFit')
-      .fetch();
+//      var data = teacherhassubject.select('subject.yearsdesc', 'subject.subjectdesc', 'subject.subjectid', 'subject.yearsyearsid')
+//      .join(['OUTER JOIN'], ["subjectsubjectid"], [["subject", ['subjectid']]])
+//      .where('userid = "ceic34fLMYPp7bFit"')
+//      .fetch();
+//        
+//        for (var i = 0; i < data.length; i++) {
+//                var yearsid = data[i].yearsyearsid;
+//                var classesdata = classes.select().where('yearsyearsid= ?', yearsid).fetch();
+//                data[i].classes= classesdata;
+//            }
+//        console.log(data);
+//            return data;
+        
+        var data = subject.select().join(['OUTER JOIN'], ['subjectid'],[["teacherhassubject","subjectsubjectid"]]).where('userid="ceic34fLMYPp7bFit"').fetch();
+//        var data = teacherhassubject.select('teacherhassubjectid', 'subjectsubjectid', 'userid').where('userid = "test"').fetch();
+        
+        
+        for (var i = 0; i < data.length; i++) {
+                var yearsid = data[i].yearsyearsid;
+                var classesdata = classes.select().where('yearsyearsid= ?', yearsid).fetch();
+                data[i].classes= classesdata;
+            }
+        
+        console.log(data);
+        return data;
     }
     
 //    dataset: function(){
