@@ -33,56 +33,60 @@ Template.teachertable.events({
             }
         });
         
-        //Meteor._reload.reload();
-        
     },
     "click .pluspoints": function(event){
         event.preventDefault();
-        var userid = event.target.getAttribute('data-userid');
-        var selecteddesc = event.target.getAttribute('data-descid');
+        var studhasdescid = event.target.getAttribute('data-studhasdescid');
+        studhasdescid = Number(studhasdescid);
+        var pointsvalue = $(event.target).parent().find('.pointsval').text();
+        var pointsmax = $(event.target).parent().find('.pointsmax').text();
+        pointsvalue = Number(pointsvalue);
+        pointsmax = Number(pointsmax);
         
-        console.log(userid,selecteddesc);
+        pointsvalue+=1;
         
-//        studenthasdescriptor.update({
-//        descriptordescriptorid: selecteddesc,
-//        userid: userid,
-//        pointsreached: ['$number']
-//        }).save();
+        if(studhasdescid == 0){
+            var userid = event.target.getAttribute('data-userid');
+            var descid = event.target.getAttribute('data-descid');
+            descid = Number(descid);
+            studenthasdescriptor.insert({
+                descriptordescriptorid: descid,
+                userid: userid,
+                pointsreached: pointsvalue
+            }).save();
+            Meteor._reload.reload(); 
+        }else{
+            if(pointsvalue-1 < pointsmax){
+            studenthasdescriptor.update({
+            pointsreached: pointsvalue
+            }).where("studenthasdescriptorid = ?",studhasdescid).save();
+            }
+        }    
     },
     "click .minuspoints": function(event){
         event.preventDefault();
-        var userid = event.target.getAttribute('data-userid');
-        var selecteddesc = event.target.getAttribute('data-descid');
+        var studhasdescid = event.target.getAttribute('data-studhasdescid');
+        studhasdescid = Number(studhasdescid);
+        var pointsvalue = $(event.target).parent().find('.pointsval').text();
+        pointsvalue = Number(pointsvalue);
         
-        console.log(userid,selecteddesc);
+        if(pointsvalue == 0){
+            console.log("standart");
+        }else{
+            pointsvalue-=1;
+            studenthasdescriptor.update({
+            pointsreached: pointsvalue
+            }).where("studenthasdescriptorid = ?",studhasdescid).save();
+        }    
     }
 });
 
-//Template.teachertable.helpers({
-//    usernames: function () {
-//      return username.select().fetch();
-//    },
-//    subjects: function() {
-//          return subject.select().fetch();
-//    },
-//    descriptors: function() {
-//          return descriptor.select().fetch();
-//    }
-//});
 
 Template.teachertable.helpers({
     competences: function () {
-        console.log("competences",this[0]);
       return this[0];
     },
     dataset: function(){
-        console.log("dataset",this[1]);
         return this[1];
     }
 });
-
-//Template.teachertable.helpers({
-//    competences: function () {
-//      return competence.select().fetch();
-//    }
-//});
