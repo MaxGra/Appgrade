@@ -95,12 +95,12 @@ Router.route('/kurse',{
     }
 });
 
-//Router.route('/posts/:_id', function() {
-//    this.render('post', {
-//    data: function(){  
-//     var test = competence.select().fetch();
-//        console.log(test);
-//        return test;
+//Router.route('/kurse/:_id', function() {
+//    this.render('kurse', {
+//    data: function(){
+//    var id = this.params._id;
+//    var kurse = subject.select().where('subjectid = ?', id).fetch();
+//        return kurse;
 //    }
 //  });  
 //});

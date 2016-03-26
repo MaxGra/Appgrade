@@ -38,7 +38,7 @@ Template.teachertable.events({
         event.preventDefault();
         var studhasdescid = event.target.getAttribute('data-studhasdescid');
         studhasdescid = Number(studhasdescid);
-        var pointsvalue = $(event.target).parent().find('.pointsval').text();
+        var pointsvalue = $(event.target).parent().find('.pointsval').val();
         var pointsmax = $(event.target).parent().find('.pointsmax').text();
         pointsvalue = Number(pointsvalue);
         pointsmax = Number(pointsmax);
@@ -67,7 +67,7 @@ Template.teachertable.events({
         event.preventDefault();
         var studhasdescid = event.target.getAttribute('data-studhasdescid');
         studhasdescid = Number(studhasdescid);
-        var pointsvalue = $(event.target).parent().find('.pointsval').text();
+        var pointsvalue = $(event.target).parent().find('.pointsval').val();
         pointsvalue = Number(pointsvalue);
         
         if(pointsvalue == 0){
@@ -78,6 +78,32 @@ Template.teachertable.events({
             pointsreached: pointsvalue
             }).where("studenthasdescriptorid = ?",studhasdescid).save();
         }    
+    },
+    "change .pointsval":function(event){
+        event.preventDefault();
+        var studhasdescid = event.target.getAttribute('data-studhasdescid');
+        studhasdescid = Number(studhasdescid);
+        var pointsvalue = $(event.target).parent().find('.pointsval').val();
+        
+        if(!pointsvalue == ""){
+            if(studhasdescid == 0){
+                var userid = event.target.getAttribute('data-userid');
+                var descid = event.target.getAttribute('data-descid');
+                descid = Number(descid);
+                studenthasdescriptor.insert({
+                descriptordescriptorid: descid,
+                userid: userid,
+                pointsreached: pointsvalue
+                }).save();
+                Meteor._reload.reload(); 
+            }else{
+                console.log("ja",pointsvalue)
+                pointsvalue = Number(pointsvalue);
+                studenthasdescriptor.update({
+                pointsreached: pointsvalue
+                }).where("studenthasdescriptorid = ?",studhasdescid).save();
+            }
+        }
     }
 });
 

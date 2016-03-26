@@ -91,7 +91,6 @@ Template.competenceModalTemplate.events({
         newdescpoints = Number(newdescpoints);
         
         if(newdescdesc.replace(/\s/g,'') !== "" && newdescpoints !== 0 && newdescpoints !== null){
-            console.log(newdescdesc,newdescpoints);
             descriptor.insert({
                 competencecompetenceid: selectedCompetence,
                 descriptordesc: newdescdesc,
