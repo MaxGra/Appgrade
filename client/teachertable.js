@@ -25,7 +25,7 @@ Template.teachertable.events({
         var selectedSubject = Session.get('selectedSubject');
         selectedSubject = Number(selectedSubject);
         
-        var pointsmaxVar= 100;
+        var pointsmaxVar= 0;
         
         Meteor.call('insertcompetence',selectedSubject,pointsmaxVar, function(error,result){
             if (result == true){
@@ -84,6 +84,7 @@ Template.teachertable.events({
         var studhasdescid = event.target.getAttribute('data-studhasdescid');
         studhasdescid = Number(studhasdescid);
         var pointsvalue = $(event.target).parent().find('.pointsval').val();
+        pointsvalue = Number(pointsvalue);
         
         if(!pointsvalue == ""){
             if(studhasdescid == 0){

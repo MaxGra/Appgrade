@@ -103,7 +103,7 @@ studenthasdescriptor = new SQL.Collection('studenthasdescriptor', 'postgres://po
 
 //    teacherhassubject.createTable(teacherhassubjectTable);
 
-    studenthasclass.createTable(studenthasclassTable);
+studenthasclass.createTable(studenthasclassTable);
 //
 //    studenthascompetence.createTable(studenthascompetenceTable);
 //

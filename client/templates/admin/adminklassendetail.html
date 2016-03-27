@@ -1,11 +1,13 @@
 <template name="adminklassendetail">
     <br />
     <br />
-    <div id="container_students">
+    <div id="container_students" class="panel">
 			<table>
 				<tr>
 					<th>
 						<h4>Angemeldete Schüler:</h4>
+					</th>
+					<th>
 					</th>
 					<th>
 						<h4>Alle Schüler:</h4>
@@ -13,77 +15,35 @@
 				</tr>
 				<tr>
 					<td>
-						<div class="studentlist">
+						<div id="studenlist_class" class="studentlist">
 							<ul>
+                                {{#each classstudents}}
 								<li>
 									<p>
-										NACHNAME Vorname
+										{{lastname}} {{firstname}}
 										
 									</p>
 									<hr/>
 								</li>
-								<li>
-									<p>
-										NACHNAME Vorname
-										
-									</p>
-									<hr/>
-								</li>
-								<li>
-									<p>
-										NACHNAME Vorname
-										
-									</p>
-									<hr/>
-								</li>
-								<li>
-									<p>
-										NACHNAME Vorname
-										
-									</p>
-									<hr/>
-								</li>
-								<li>
-									<p>
-										NACHNAME Vorname
-										
-									</p>
-									<hr/>
-								</li>
-								<li>
-									<p>
-										NACHNAME Vorname
-										
-									</p>
-									<hr/>
-								</li>
-								<li>
-									<p>
-										NACHNAME Vorname
-										
-									</p>
-									<hr/>
-								</li>
-								<li>
-									<p>
-										NACHNAME Vorname
-										
-									</p>
-									<hr/>
-								</li>
+                                {{/each}}
 							</ul>
 						</div>
 					</td>
 					<td>
-						<div class="studentlist">
+						<button type="button" id="button_studentlist_left" class="btn">
+							<span class="glyphicon glyphicon-arrow-left"></span>
+							<span class="glyphicon glyphicon-arrow-right"></span>
+						</button>
+					</td>
+					<td>
+						<div id="studenlist_all" class="studentlist">
 							<ul>
-                                {{#each allstudents}}
+								{{#each allstudents}}
 								<li>
 									<p>
-                                        {{username}}
-                                        {{lastName}}
-                                        {{firstName}}
-                                        {{_id}}
+                                        {{lastName}} {{firstName}} {{_id}} {{username}}
+                                        
+                                       
 									</p>
 									<hr/>
 								</li>
