@@ -42,6 +42,12 @@ studenthasdescriptor = new SQL.Collection('studenthasdescriptor', 'postgres://po
 
 
 
+//        subject.insert({
+//            subjectdesc: 'test',
+//            yearsyearsid: 2
+//        }).save();
+
+
 //teacherhassubject.insert({subjectid: 2, userid: 'test'}); -+
 
 //subject.insert({subjectdesc:'all'}).save();
@@ -60,7 +66,7 @@ studenthasdescriptor = new SQL.Collection('studenthasdescriptor', 'postgres://po
 //  });
 
 subject.publish('subject', function(){
-    return subject.select('yearsid', 'yearsdesc', 'subjectid', 'yearsyearsid', 'subjectdesc')
+    return subject.select('subjectid', 'yearsyearsid', 'subjectdesc','yearsid', 'yearsdesc')
                 .join(['INNER JOIN'], ["yearsyearsid"], [["years", 'yearsid']])
                 .limit(100);
   });
@@ -144,9 +150,14 @@ studenthasdescriptor.publish('studenthasdescriptor', function(){
          .save();
          return true;
      },
-     'deletestudentdata': function(id){
+     'deleteallstudentdata': function(id){
          studenthasdescriptor.remove()
          .where("descriptordescriptorid = ?", id)
+         .save();
+     },
+     'deletestudentdata': function(id){
+         studenthasdescriptor.remove()
+         .where("userid = ?", id)
          .save();
      },
      'insertcompetence': function(selectedSubject,pointsmaxVar){
@@ -174,6 +185,13 @@ studenthasdescriptor.publish('studenthasdescriptor', function(){
      },
      'getdescriptorpoints': function(userid){
          return studenthasdescriptor.select().where('userid = ?', userid).limit(100);
+     },
+     'insertsubject': function(subjectdesc,yearsid){
+        subject.insert({
+            subjectdesc: subjectdesc,
+            yearsyearsid: yearsid
+        }).save();
+         return true;
      }
 });
 

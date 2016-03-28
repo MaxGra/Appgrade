@@ -162,7 +162,7 @@ Template.delcompetenceModalTemplate.events({
         console.log(test);
         for(var i =0; i < test.length; i++){
             var descid = test[i].descriptorid;
-            Meteor.call('deletestudentdata',descid, function(error,result){
+            Meteor.call('deleteallstudentdata',descid, function(error,result){
             
             });
         }

@@ -1,12 +1,12 @@
-<template name="adminklassen">
-        <br/>
+<template name="adminfaecher">
+    <br/>
 		<br/>
 		<br/>
     <div id="classes">
 			<table class="table table-striped table-hover">
 				<thead>
 					<tr>
-						<th>Klasse</th>
+						<th>Kursbeschreibung</th>
 						<th>Jahrgang</th>
 					</tr>
 				</thead>
@@ -29,9 +29,9 @@
 						<td>1I</td>
 					</tr>
 -->
-                    {{#each classes}}
-                    <tr class="classlink" data-link="{{classid}}" name="classlinkName">
-                        <td>{{classdesc}}</td>
+                    {{#each subjects}}
+                    <tr class="subjectlink" data-link="{{subjectid}}" name="classlinkName">
+                        <td>{{subjectdesc}}</td>
                         <td>{{yearsdesc}}</td>
                         </tr>
                     {{/each}}
@@ -41,10 +41,10 @@
 		
 		<div class="container_classes_buttons">
 				<br/>
-			Neu:
+			Neuer Kurs:
 				<br/>
 			<span class="pull-left">
-				<input type="text" class="form-control classinput" name="classinput" placeholder="Klasse..." />
+				<input type="text" class="form-control subjectinput" name="subjectinput" placeholder="Kursbeschreibung..." />
 			</span>
 			<span class="pull-left">
 				<select class="form-control selectedyear" name="selectedclass">
@@ -58,10 +58,10 @@
 				</select>
 			</span>
 			<span class="pull-left">
-				<button type="button" class="addclass btn ag_button_alt" name="addclass">bestätigen</button>
+				<button type="button" class="addsubject btn ag_button_alt" name="addclass">Erstellen</button>
 			</span>
             <span class="pull-left inputerror hide">
-				<div class="alert alert-danger">Keine Klasse angegeben!</div>
+				<div class="alert alert-danger">Kein Kursname angegeben!</div>
 			</span>
 		</div>
 </template>

@@ -1,3 +1,10 @@
+Router.configure({
+//    loadingTemplate: "loading",
+    notFoundTemplate: "notFound"
+});
+
+
+
 Router.route('/',{
     template: 'login',
     name: 'main',
@@ -66,8 +73,8 @@ Router.route('/klassen/:_id',{
                 data: function(){
                     var selectedClass = this.params._id;
                     selectedClass = Number(selectedClass);
+                    Session.set('selectedClass',selectedClass);
                     var data = studenthasclass.select().where('classclassid = ?', selectedClass).fetch();
-                    console.log(data);
                     for(var i = 0; i < data.length; i++){
                         var user = Meteor.users.find({'_id' : data[i].userid}).fetch();
                         data[i].firstname = user[0].firstName;
@@ -87,6 +94,66 @@ Router.route('/klassen/:_id',{
           Router.go("main");
           this.next();
         }    
+    }
+});
+
+Router.route('/faecher',{ 
+    name: 'faecher',
+    onBeforeAction: function () {
+        var currentUser = Meteor.userId();
+        if(currentUser){
+        if(Meteor.user().usertype == "admin"){
+            this.layout("adminlayout");
+            this.render('adminfaecher',{
+                data: function(){
+                    var subjectdata = subject.select().fetch();
+                    var yearsdata = years.select().fetch();
+                    return [subjectdata,yearsdata];
+                }
+            });
+        }
+        else{
+            this.render("forbidden");
+        }
+      }
+        else{
+          Router.go("main");
+          this.next();
+        }
+    }
+});
+
+Router.route('/faecher/:_id',{ 
+    name: 'faecherid',
+    onBeforeAction: function () {
+        var currentUser = Meteor.userId();
+        if(currentUser){
+        if(Meteor.user().usertype == "admin"){
+            this.layout("adminlayout");
+            this.render('adminfaecherdetail',{
+                data: function(){
+                    var selectedSubject = this.params._id;
+                    selectedSubject = Number(selectedSubject);
+                    Session.set('selectedSubject',selectedSubject);
+                    var data = teacherhassubject.select().where('subjectsubjectid = ?', selectedSubject).fetch();
+                    for(var i = 0; i < data.length; i++){
+                        var user = Meteor.users.find({'_id' : data[i].userid}).fetch();
+                        data[i].firstname = user[0].firstName;
+                        data[i].lastname = user[0].lastName;
+                        
+                    }
+                    return data;
+                }
+            });
+        }
+        else{
+            this.render("forbidden");
+        }
+      }
+        else{
+          Router.go("main");
+          this.next();
+        }
     }
 });
 
@@ -185,15 +252,6 @@ Router.route('/kurse',{
     }
 });
 
-//Router.route('/kurse/:_id', function() {
-//    this.render('kurse', {
-//    data: function(){
-//    var id = this.params._id;
-//    var kurse = subject.select().where('subjectid = ?', id).fetch();
-//        return kurse;
-//    }
-//  });  
-//});
 
 Router.route('/kurse/:_id/:_class',function(){
     var currentUser = Meteor.userId();
@@ -295,28 +353,28 @@ Router.route('/kurse/:_id/:_class',function(){
 
 
 
-Router.route('/mainteacher',{
-    template: 'mainteacher',
-    name: 'mainteacher',
-    onBeforeAction: function(){
-        var currentUser = Meteor.userId();
-        if(currentUser){
-            this.next();
-        } else {
-            this.render("login");
-        }
-    }
-});
-
-Router.route('/mainstudent',{
-    template: 'mainstudent',
-    name: 'mainstudent',
-    onBeforeAction: function(){
-        var currentUser = Meteor.userId();
-        if(currentUser){
-            this.next();
-        } else {
-            this.render("login");
-        }
-    }
-});
+//Router.route('/mainteacher',{
+//    template: 'mainteacher',
+//    name: 'mainteacher',
+//    onBeforeAction: function(){
+//        var currentUser = Meteor.userId();
+//        if(currentUser){
+//            this.next();
+//        } else {
+//            this.render("login");
+//        }
+//    }
+//});
+//
+//Router.route('/mainstudent',{
+//    template: 'mainstudent',
+//    name: 'mainstudent',
+//    onBeforeAction: function(){
+//        var currentUser = Meteor.userId();
+//        if(currentUser){
+//            this.next();
+//        } else {
+//            this.render("login");
+//        }
+//    }
+//});
