@@ -26,9 +26,23 @@ Template.competenceModalTemplate.events({
         var selecteddesc = event.target.getAttribute('data-descid');
         selecteddesc = Number(selecteddesc);
         
+        var selectedCompetence = Session.get('selectedCompetence'); 
+        selectedCompetence = Number(selectedCompetence);
+        
           descriptor.remove()
          .where("descriptorid = ?", selecteddesc)
          .save();
+        
+            var data= descriptor.select('pointsmax').where("competencecompetenceid = ?",selectedCompetence).fetch();
+            var points = 0;
+            for(var i= 0; i<data.length; i++){
+                points += Number(data[i].pointsmax);
+            } 
+            
+            competence.update({        
+            pointsmax: points})
+            .where("competenceid = ?", selectedCompetence)
+            .save();
         
         
     },
@@ -59,7 +73,17 @@ Template.competenceModalTemplate.events({
          Meteor.call('updatedescriptor',selecteddesc,newdescdesc,newdescpoints, function(error,result){
                 });
         
-        console.log(selecteddesc,newdescdesc,newdescpoints);
+            var data= descriptor.select('pointsmax').where("competencecompetenceid = ?",selectedCompetence).fetch();
+            var points = 0;
+            for(var i= 0; i<data.length; i++){
+                points += Number(data[i].pointsmax);
+            } 
+            
+            competence.update({        
+            pointsmax: points})
+            .where("competenceid = ?", selectedCompetence)
+            .save();
+        
     },
     "click .saveall": function(event){
         var selectedCompetence = Session.get('selectedCompetence');
@@ -91,12 +115,28 @@ Template.competenceModalTemplate.events({
         newdescpoints = Number(newdescpoints);
         
         if(newdescdesc.replace(/\s/g,'') !== "" && newdescpoints !== 0 && newdescpoints !== null){
-            console.log(newdescdesc,newdescpoints);
             descriptor.insert({
                 competencecompetenceid: selectedCompetence,
                 descriptordesc: newdescdesc,
                 pointsmax: newdescpoints
             }).save();
+            
+            
+            var data= descriptor.select('pointsmax').where("competencecompetenceid = ?",selectedCompetence).fetch();
+            var points = 0;
+            for(var i= 0; i<data.length; i++){
+                points += Number(data[i].pointsmax);
+            } 
+            
+            competence.update({        
+            pointsmax: points})
+            .where("competenceid = ?", selectedCompetence)
+            .save();
+            
+            $('.newdescdesc').val(null);
+            $('.newdescpoints').val(null);
+            
+            
             
 //            Meteor.call('insertdescriptor',selectedCompetence,newdescdesc,newdescpoints, function(error,result){
 //            if (result == true){
@@ -118,10 +158,18 @@ Template.delcompetenceModalTemplate.events({
         console.log('del');
         var selectedCompetence = Session.get('selectedCompetence');
         selectedCompetence = Number(selectedCompetence);
+        var test = descriptor.select("descriptorid").where("competencecompetenceid = ?",selectedCompetence).fetch();
+        console.log(test);
+        for(var i =0; i < test.length; i++){
+            var descid = test[i].descriptorid;
+            Meteor.call('deletestudentdata',descid, function(error,result){
+            
+            });
+        }
         Meteor.call('deletecompetence',selectedCompetence, function(error,result){
-            if (result == true){
-              Meteor._reload.reload();  
-            }
+        if (result == true){
+            Meteor._reload.reload();  
+        }
         });
     }
 });

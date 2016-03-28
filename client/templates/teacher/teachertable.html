@@ -99,7 +99,8 @@
                             {{#each competencesdata}}
                                 {{#each descriptorsdata}}
                                     <td class="{{status}}">
-                                        <p style="display:inline;" class="pointsval">{{pointsreached}}</p>/<p style="display:inline;" class="pointsmax">{{pointsmax}}</p>
+<!--                                        <p style="display:inline;" class="pointsval">{{pointsreached}}</p>/<p style="display:inline;" class="pointsmax">{{pointsmax}}</p>-->
+                                        <input type="number" class="assessment_inp_points pointsval" min="0" max="{{pointsmax}}" value="{{pointsreached}}" data-userid="{{../../student._id}}" data-descid="{{descriptorid}}" data-studhasdescid="{{studhasdescid}}"/>/<p style="display:inline;" class="pointsmax">{{pointsmax}}</p>
                                         <div class="timeline">
                                         </div>
                                         <span class="glyphicon glyphicon-plus span_clickable pluspoints" data-userid="{{../../student._id}}" data-descid="{{descriptorid}}"  data-studhasdescid="{{studhasdescid}}" title="positive Mitarbeit hinzufügen"></span>

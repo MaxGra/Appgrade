@@ -61,7 +61,97 @@ Router.route('/klassen/:_id',{
         if(currentUser){
         if(Meteor.user().usertype == "admin"){
             this.layout("adminlayout");
-            this.render('adminklassendetail');
+            this.render('adminklassendetail',{
+                
+                data: function(){
+                    var selectedClass = this.params._id;
+                    selectedClass = Number(selectedClass);
+                    var data = studenthasclass.select().where('classclassid = ?', selectedClass).fetch();
+                    console.log(data);
+                    for(var i = 0; i < data.length; i++){
+                        var user = Meteor.users.find({'_id' : data[i].userid}).fetch();
+                        data[i].firstname = user[0].firstName;
+                        data[i].lastname = user[0].lastName;
+                    }
+                    return data;
+                }
+            });
+            
+        }
+        else{
+            this.render("forbidden");
+            this.next();
+        }
+      }
+        else{
+          Router.go("main");
+          this.next();
+        }    
+    }
+});
+
+Router.route('/fach/:_id',{
+    name: "studentsubject",
+    onBeforeAction: function () {
+        var currentUser = Meteor.userId();
+        if(currentUser){
+        if(Meteor.user().usertype == "student"){
+            this.layout("studentlayout");
+            this.render('studentsubject',{
+                
+                data: function(){
+                    
+                    
+        var selectedSubject = this.params._id;
+        selectedSubject = Number(selectedSubject);
+        var studentid = Meteor.userId();
+        
+                        var competencesstudentdata = competence.select().where('subjectsubjectid= ?', selectedSubject).fetch();
+                        for (var i = 0; i < competencesstudentdata.length; i++) {
+                        var compid1 = competencesstudentdata[i].competenceid;
+                        var descriptorstudentsdata = descriptor.select().where('competencecompetenceid= ?', compid1).fetch();
+                        var points = 0;
+                        for(var k = 0; k < descriptorstudentsdata.length; k++){
+                            
+                            var pointsdata = studenthasdescriptor.select().where('userid = ? AND descriptordescriptorid = ?', studentid, descriptorstudentsdata[k].descriptorid).fetch();
+                            
+                            if(pointsdata.length > 0){
+                            
+                            descriptorstudentsdata[k].pointsreached = pointsdata[0].pointsreached;
+                            points+= Number(descriptorstudentsdata[k].pointsreached);
+                            descriptorstudentsdata[k].studhasdescid = pointsdata[0].studenthasdescriptorid;    
+                                
+                            }else{
+                            descriptorstudentsdata[k].pointsreached = 0;
+                            descriptorstudentsdata[k].studhasdescid = 0;
+                            }
+                            
+                           if(descriptorstudentsdata[k].pointsreached < descriptorstudentsdata[k].pointsmax/2){
+                               descriptorstudentsdata[k].status = "danger";
+                           };
+                           if(descriptorstudentsdata[k].pointsreached >= descriptorstudentsdata[k].pointsmax/2){
+                               descriptorstudentsdata[k].status = "warning";
+                           };
+                           if(descriptorstudentsdata[k].pointsreached == descriptorstudentsdata[k].pointsmax){
+                               descriptorstudentsdata[k].status = "success";
+                           }; 
+                            
+                        }
+                        
+                        competencesstudentdata[i].descriptorsdata= descriptorstudentsdata;
+                        competencesstudentdata[i].pointsreached = points;
+                        
+                    }
+        
+        
+        
+        //console.log(competencesstudentdata);
+        
+        return competencesstudentdata;            
+                    
+                }
+                
+            });
             
         }
         else{
@@ -95,12 +185,12 @@ Router.route('/kurse',{
     }
 });
 
-//Router.route('/posts/:_id', function() {
-//    this.render('post', {
-//    data: function(){  
-//     var test = competence.select().fetch();
-//        console.log(test);
-//        return test;
+//Router.route('/kurse/:_id', function() {
+//    this.render('kurse', {
+//    data: function(){
+//    var id = this.params._id;
+//    var kurse = subject.select().where('subjectid = ?', id).fetch();
+//        return kurse;
 //    }
 //  });  
 //});

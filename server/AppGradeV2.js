@@ -136,13 +136,18 @@ studenthasdescriptor.publish('studenthasdescriptor', function(){
          .save(); 
      },
      'deletecompetence': function(id){
-        descriptor.remove()
+         descriptor.remove()
          .where("competencecompetenceid = ?", id)
          .save();
          competence.remove()
          .where("competenceid = ?", id)
          .save();
          return true;
+     },
+     'deletestudentdata': function(id){
+         studenthasdescriptor.remove()
+         .where("descriptordescriptorid = ?", id)
+         .save();
      },
      'insertcompetence': function(selectedSubject,pointsmaxVar){
         competence.insert({

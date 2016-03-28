@@ -1,3 +1,20 @@
 <template name="studenttable">
-    <div>Student</div>
+        <br />
+    		<div id="class-list">
+			<div class="list-group">
+				<button class="list-group-item">
+					<h4 class="pull-left">Gegenstand</h4>
+					<h4 class="pull-right margin_20_right">Punkte</h4>
+				</button>
+                {{#each subjects}}
+				<button type="button" class="list-group-item subject" data-subid="{{subjectid}}">
+					<h4>
+                        <span class="pull-left" data-subid="{{subjectid}}">{{subjectdesc}}</span>
+                        <span class="ag_menuitem_chevron glyphicon glyphicon-chevron-right pull-right" data-subid="{{subjectid}}"></span>
+<!--                        <span class="label label-default label-pill pull-right" data-subid="{{subjectid}}">20/30</span>-->
+                    </h4>
+				</button>
+                {{/each}}
+			</div>
+		</div>
 </template>

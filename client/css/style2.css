@@ -40,7 +40,7 @@ th span {
 	width: 90%;
 	max-width: 600px;
 	
-	background-color: #ffffff;
+	/*background-color: #ffffff;*/
 	
 	margin: auto;
 	
@@ -516,9 +516,11 @@ th span {
 	margin: auto;
 }
 
+.assessment_inp_points {
+ width: 50px;
+}
+
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
-
-
 
 
 
@@ -565,6 +567,12 @@ th span {
 }
 	
 	.studentlist li {
+		/*
+		border-style: solid;
+		border-width: 5px;
+		border-color: #ffffff;
+		*/
+		
 		text-align:left;
 		list-style-type: none;
 		margin: 0px;
@@ -578,6 +586,12 @@ th span {
 		}
 	
 	.studentlist li:hover {
+		/*
+		border-style: solid;
+		border-width: 5px;
+		border-color: #45b2ff;
+		*/
+		
 		background-color: #efefef;
 	}
 	
@@ -585,6 +599,18 @@ th span {
 		width: 95%;
 		margin: auto;
 	}
+	
+.activeListItem {
+	border-style: solid;
+	border-width: 5px;
+	border-color: #cdcdcd;
+}
+
+.nonactiveListItem {
+	border-style: solid;
+	border-width: 5px;
+	border-color: #ffffff;
+}
 
 #studentlist_header {
 	background-color: #ffffff;
@@ -617,8 +643,8 @@ th span {
 		margin: 10px;
 	}
 
-
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+
 
 
 
@@ -791,3 +817,46 @@ th span {
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
 
 
+
+
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+/*	GRADEVIEW */
+#class-list {
+	width: 90%;
+	margin: auto;
+}
+
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+
+
+
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+/*	CLASS-LIST */
+
+
+.list-group-item {
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+
+#container_pointlist {
+	width: 90%;
+	margin: auto;
+}
+
+.pointlist {
+	width: 100%;
+	margin: auto;
+	margin: 50px 0px 50px 0px;
+	
+}
+
+.ag_list-group-header {
+	font-size: 13pt;
+	font-weight: bold;
+}
+
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */

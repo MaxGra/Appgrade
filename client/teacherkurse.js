@@ -13,9 +13,8 @@ Template.teacherkurse.helpers({
 //        console.log(data);
 //            return data;
         
-        var data = subject.select().join(['OUTER JOIN'], ['subjectid'],[["teacherhassubject","subjectsubjectid"]]).where('userid="ceic34fLMYPp7bFit"').fetch();
-//        var data = teacherhassubject.select('teacherhassubjectid', 'subjectsubjectid', 'userid').where('userid = "test"').fetch();
-        
+        var currentUser = Meteor.userId();
+        var data = subject.select().join(['OUTER JOIN'], ['subjectid'],[["teacherhassubject","subjectsubjectid"]]).where('userid= ?',currentUser).fetch();        
         
         for (var i = 0; i < data.length; i++) {
                 var yearsid = data[i].yearsyearsid;
