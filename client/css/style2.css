@@ -860,3 +860,74 @@ th span {
 }
 
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+
+
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+/* error*/
+
+.error_container {
+	min-width: 250px;
+	max-width: 450px;
+	
+	clear: both;
+	
+	padding: 30px 30px 0px 30px;
+	margin: auto;
+}
+
+.error {
+	border-style: solid;
+	border-color: #7f7f7f;
+	border-width: 4px;
+	
+	width: 100%;
+	
+	background-color: #ffffff;
+	
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	
+	position: relative;
+	display:inline-block;
+	
+	padding: 20px;
+	margin: auto;
+}
+
+.error:after {
+	content: "";
+	position: absolute;
+	bottom: -15px;
+	left: 60%;
+	border-style: solid;
+	border-width: 15px 15px 0;
+	border-color: #FFFFFF transparent;
+	display: block;
+	width: 0;
+	z-index: 1;
+}
+
+.error:before {
+	content: "";
+	position: absolute;
+	bottom: -19.5px;
+	left: calc(60% - 3px) ;
+	border-style: solid;
+	border-width: 18px 18px 0;
+	border-color: #7F7F7F transparent;
+	display: block;
+	width: 0;
+	z-index: 0;
+}
+
+#error_character {
+	width: 300px;
+	margin: auto;
+}
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+
+.errormsg {
+    border-radius: 25px;
+}

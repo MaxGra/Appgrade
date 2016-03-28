@@ -1,6 +1,5 @@
 Template.adminklassen.helpers({
     classes: function () {
-        console.log(this[0])
         return this[0];
     },
     years: function (){

@@ -6,6 +6,8 @@ Template.login.events({
         Meteor.loginWithPassword(userVar, passwordVar,function(error){
                 if(error){
                     console.log(error.reason);
+                    $('.errormsg').removeClass("hide");
+                    $('.errormsg').text(error.reason);
                 } else {
                     
                     Router.go("main");

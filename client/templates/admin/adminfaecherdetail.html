@@ -1,4 +1,4 @@
-<template name="adminklassendetail">
+<template name="adminfaecherdetail">
     <br />
     <br />
     <button type="button" style="margin-left:3em;" class="btn btn-default ag_button_white glyphicon glyphicon-chevron-left back"></button>
@@ -8,19 +8,19 @@
 			<table>
 				<tr>
 					<th>
-						<h4>Angemeldete Schüler:</h4>
+						<h4>Trainer für diesen Kurs:</h4>
 					</th>
 					<th>
 					</th>
 					<th>
-						<h4>Alle Schüler:</h4>
+						<h4>Alle Lehrer:</h4>
 					</th>
 				</tr>
 				<tr>
 					<td>
-						<div id="studenlist_class" class="studentlist">
+						<div id="teacherlist_class" class="studentlist">
 							<ul>
-                                {{#each classstudents}}
+                                {{#each subjectteachers}}
 								<li class="nonactiveListItem" data-id="{{userid}}">
 									<p class="name">
 										{{lastname}} {{firstname}}
@@ -38,9 +38,9 @@
 						</button>
 					</td>
 					<td>
-						<div id="studenlist_all" class="studentlist">
+						<div id="teacherlist_all" class="studentlist">
 							<ul>
-								{{#each allstudents}}
+								{{#each allteachers}}
 								<li class="nonactiveListItem" data-id="{{_id}}">
 									<p class="name">
                                         {{lastName}} {{firstName}} {{_id}} {{username}}
@@ -56,7 +56,7 @@
 				</tr>
 			</table>
 			<div id="studentlist_controllpanel">
-				<button type="button" class="btn ag_button-cancel deletestudent">Schüler aus Klasse entfernen</button>
+				<button type="button" class="btn ag_button-cancel deleteteacher">Trainer entfernen</button>
 			</div>
 		</div>
 </template>
