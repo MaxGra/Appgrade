@@ -1,0 +1,86 @@
+
+
+<!--
+<template name="studentupload">
+<input class="your-upload-class" type="file">
+
+  <table class="table table-condensed">
+        <tbody>
+        {{#each theFiles}}
+        <tr>
+    <td>{{uploadedAt}}</td><td>{{original.name}}</td><td><a
+ href="{{url}}">link</a></td><td>{{#if 
+isUploaded}}uploaded{{/if}}</td><td><button 
+id="deleteFileButton">delete</button></td>
+        </tr>
+        {{/each}}
+        </tbody>
+      </table>
+</template>
+-->
+
+<template name="useruploads">
+    <div class="modal fade" id="useruploads">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h3 class="modal-title">Abgaben von {{name}} zu {{descriptorname}}</h3>
+        </div>
+
+        <div class="modal-body">
+            
+            <h4>Abgaben:</h4>
+				<table class="table table-bordered table-hover">
+					<thead>
+						<tr>
+							<th>
+								Nr.
+							</th>
+							<th>
+								Dateiname
+							</th>
+							<th>
+								Datum
+							</th>
+							<th>
+								Status
+							</th>
+							<th>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+                        {{#each theFiles}}
+						<tr>
+							<td>
+								{{@index}}
+							</td>
+							<td>
+								<span>{{original.name}}</span>
+							</td>
+							<td>
+								<span>{{uploadedAt}}</span>
+							</td>
+							<td>
+								<span>{{#if isUploaded}}uploaded{{/if}}</span>
+							</td>
+							<td>
+                                <a href="{{this.url download=true}}" class="downloadbutton"  target="_parent"><span class="glyphicon glyphicon-download-alt"></span></a>
+							</td>
+						</tr>
+                        {{/each}}
+					</tbody>
+				</table>
+            <br />
+            <br />
+          </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Schließen</button>
+        </div>
+
+      
+    </div>
+  </div>
+    </div>
+</template>

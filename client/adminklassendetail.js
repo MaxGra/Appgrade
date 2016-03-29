@@ -37,7 +37,6 @@ Template.adminklassendetail.events({
                }
            }
            if(!studexist){
-               console.log("neuer");
                studenthasclass.insert({
                     classclassid: classid,
                     userid: userid
@@ -51,7 +50,6 @@ Template.adminklassendetail.events({
        if($("#studenlist_class").find(".activeListItem").length){
           var userid = $("#studenlist_class").find(".activeListItem").attr("data-id");
           if (confirm('Schüler wirklich aus der Klassen entfernen? Alle Benotungen für diesen Schüler werden gelöscht')) {
-                    console.log("remove")
                     studenthasclass.remove().where('userid = ?',userid).save();
                     studenthasdescriptor.remove().where('userid = ?',userid).save();
 //                    Meteor.call('deletestudentdata',userid, function(error,result){

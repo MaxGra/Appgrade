@@ -25,3 +25,6 @@ raynes:accounts-pg
 accounts-base
 accounts-password
 houston:admin
+meteor-platform
+cfs:filesystem
+cfs:standard-packages

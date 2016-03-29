@@ -11,7 +11,6 @@ Template.adminklassen.helpers({
 
 Template.adminklassen.events({
     "click .addclass": function(event) {
-        console.log("add");
         var classinput = $('.classinput').val();
         var jahrgangsel = $('.selectedyear option:selected').attr('data-yearsid');
         var jahrgangselValue = $('.selectedyear option:selected').val();
@@ -30,5 +29,8 @@ Template.adminklassen.events({
     "click .classlink": function(event) {
         var link = $(event.target).parent().attr('data-link');
         Router.go('klassenid', {_id: link});
+    },
+    "click .refresh": function(){
+        Meteor._reload.reload(); 
     }
 });

@@ -116,49 +116,7 @@ studenthasclass.createTable(studenthasclassTable);
 
 
 
-  Template.test.events({
-    "submit .new-task": function (event) {
-      if (event.target.category.value){
-        var user = username.select()
-                     .where("name = ?", event.target.category.value)
-                     .fetch();
-        user = user[0].id;
-        var text = event.target.text.value;
-        tasks.insert({
-          text:text,
-          checked:false,
-          usernameid: user
-        }).save();
-        event.target.text.value = "";
-      } else{
-        alert("please add a user first");
-      }
-      return false;
-    },
-    "submit .new-user": function (event) {
-      var text = event.target.text.value;
-      username.insert({
-        name:text
-      }).save();
-      event.target.text.value = "";
 
-      return false;
-    },
-    "click .toggle-checked": function () {
-      tasks.update({id: this.id, "checked": !this.checked})
-           .where("id = ?", this.id)
-           .save();
-    },
-    "click .delete": function () {
-      tasks.remove()
-           .where("id = ?", this.id)
-           .save();
-    },
-    "change .catselect": function(event){
-      newUser = event.target.value;
-      tasks.reactiveData.changed();
-    }
-  });
 
 Tracker.autorun(function () {
     Meteor.subscribe("userData");

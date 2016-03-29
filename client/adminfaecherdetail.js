@@ -3,7 +3,13 @@ Template.adminfaecherdetail.helpers({
       return Meteor.users.find({'usertype' : 'teacher'});
     },
     subjectteachers: function(){
-        return this;
+        return this[0];
+    },
+    subjectinfo: function(){
+        return this[1];
+    },
+    years: function(){
+        return years.select().fetch();
     }
 });
 
@@ -37,7 +43,6 @@ Template.adminfaecherdetail.events({
                }
            }
            if(!teachexist){
-               console.log("neuer");
                teacherhassubject.insert({
                     subjectsubjectid: subjectid,
                     userid: userid
@@ -63,5 +68,25 @@ Template.adminfaecherdetail.events({
     "click .back": function(event) {
         event.preventDefault();
         Router.go("faecher");
+    },
+    "click .safedesc":function(event) {
+        var subdesc = $('.subdesc').val();
+        var subyear = $('.subyear option:selected').attr('data-yearsid');
+        var selectedsub = Session.get('selectedSubject');
+        subyear = Number(subyear);
+        selectedsub = Number(selectedsub);
+        
+        console.log(subdesc,subyear);
+        
+        subject.update({
+              subjectdesc: subdesc, 
+              yearsyearsid: subyear
+            })
+            .where("subjectid = ?", selectedsub)
+            .save();
+        
+                 Meteor.call('updatesubject',subdesc,subyear,selectedsub, function(error,result){
+                });
+  
     }
 });

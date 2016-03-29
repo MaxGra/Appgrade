@@ -4,6 +4,27 @@
     <button type="button" style="margin-left:3em;" class="btn btn-default ag_button_white glyphicon glyphicon-chevron-left back"></button>
     <br />
     <br />
+    
+    
+<div id="content">    
+    <div class="panel ag-control-panel">
+				<div class="childs-inline-block">
+                    {{#each subjectinfo}}
+					<input type="textfield" class="form-control width-70 subdesc" value="{{subjectdesc}}"/>
+					<select name="" size="" class="form-control select-dropdown width-20 pull-right subyear">
+                            <option selected data-yearsid="{{yearsyearsid}}">{{yearsdesc}}</option>
+                        {{#each years}}
+
+                            <option data-yearsid="{{yearsid}}">{{yearsdesc}}</option>
+
+                        {{/each}}
+					</select>
+                    {{/each}}
+				</div>
+				<button class="btn ag_button-success safedesc">Speichern</button>
+			</div>
+
+    <br />
     <div id="container_students" class="panel">
 			<table>
 				<tr>
@@ -43,7 +64,7 @@
 								{{#each allteachers}}
 								<li class="nonactiveListItem" data-id="{{_id}}">
 									<p class="name">
-                                        {{lastName}} {{firstName}} {{_id}} {{username}}
+                                        {{lastName}} {{firstName}}
                                         
                                        
 									</p>
@@ -59,4 +80,5 @@
 				<button type="button" class="btn ag_button-cancel deleteteacher">Trainer entfernen</button>
 			</div>
 		</div>
+    </div>
 </template>

@@ -18,53 +18,6 @@ studenthasclass = new SQL.Collection('studenthasclass', 'postgres://postgres:pas
 
 studenthasdescriptor = new SQL.Collection('studenthasdescriptor', 'postgres://postgres:pass@localhost/meteor');
 
-//competence.insert({
-//        subjectsubjectid: 5,
-//        competencedesc: "neue kompe",
-//        pointsmax: 100}).save();
-//classes.insert({
-//        yearsyearsid:5,
-//        classdesc: "TES"
-//}).save();
-
-//descriptor.insert({
-//        competencecompetenceid: 10,
-//        descriptordesc: 'testdesc',
-//        pointsmax: 10}).save();
-
-//_______________________________________________
-
-//competence.update({        
-//            competencedesc: "testkompe",
-//            pointsmax: 100})
-//            .where("competenceid = 14")
-//            .save();
-
-
-
-//        subject.insert({
-//            subjectdesc: 'test',
-//            yearsyearsid: 2
-//        }).save();
-
-
-//teacherhassubject.insert({subjectid: 2, userid: 'test'}); -+
-
-//subject.insert({subjectdesc:'all'}).save();
-
-//username.insert({name:'all'}).save();
-
-
-//_______________________________________________
-
-//  teacherhassubject.publish('teacherhassubject', function(){
-//    tryout = teacherhassubject.select('subjectdesc', 'userid', 'subjectsubjectid')
-//                .join(['INNER JOIN'], ["subjectsubjectid"], [["subject", 'subjectid']])
-//                .limit(100);
-//    return tryout.join(['INNER JOIN'], ["yearsyearsid"], [["years", 'yearsid']])
-//                .where("userid = 'ceic34fLMYPp7bFit'")
-//  });
-
 subject.publish('subject', function(){
     return subject.select('subjectid', 'yearsyearsid', 'subjectdesc','yearsid', 'yearsdesc')
                 .join(['INNER JOIN'], ["yearsyearsid"], [["years", 'yearsid']])
@@ -75,9 +28,6 @@ teacherhassubject.publish('teacherhassubject', function(){
     return teacherhassubject.select('teacherhassubjectid', 'subjectsubjectid', 'userid').limit(100);
   });
 
-//subject.publish('subject', function(){
-//    return subject.select('subjectid', 'yearsyearsid', 'subjectdesc').limit(100);
-//  });
 
 years.publish('years', function(){
     return years.select('yearsid', 'yearsdesc').order('yearsid DESC').limit(100);
@@ -101,22 +51,11 @@ competence.publish('competence', function(){
   });
 
 
-//competencewithsubject.publish('competence', function(){
-//    return competencewithsubject.select('subjectid', 'subjectdesc', 'competenceid', 'subjectsubjectid', 'competencedesc', 'pointsmax')
-//        .join(['INNER JOIN'], ["subjectsubjectid"], [["subject", 'subjectid']])
-//        .order('competenceid DESC')
-//        .limit(100);
-//  });
-
 
 studenthasclass.publish('studenthasclass', function(){
     return studenthasclass.select('studenthasclassid', 'classclassid', 'userid').limit(100);
   });
-//
-//studenthascompetence.publish('studenthascompetence', function(){
-//    return studenthascompetence.select('studenthascompetenceid', 'competencecompetenceid', 'userid', 'pointsreached').limit(100);
-//  });
-//
+
 studenthasdescriptor.publish('studenthasdescriptor', function(){
     return studenthasdescriptor.select('studenthasdescriptorid', 'descriptordescriptorid', 'pointsreached', 'userid').limit(100);
   });
@@ -192,6 +131,13 @@ studenthasdescriptor.publish('studenthasdescriptor', function(){
             yearsyearsid: yearsid
         }).save();
          return true;
+     },
+     'updatesubject': function(subjectdesc,subjectyear,subjectid){
+        subject.update({
+            subjectdesc: subjectdesc,
+            yearsyearsid: subjectyear
+        }).where('subjectid = ?',subjectid).save();
+         return true;         
      }
 });
 
@@ -216,6 +162,10 @@ Meteor.publish('userData', function() {
    return Meteor.users.find({}, {fields:{'_id':1,'username':1,'firstName':1,'lastName':1,'usertype':1}})
  })
 
+Meteor.publish("fileUploads", function () {
+  console.log("publishing fileUploads");
+  return YourFileCollection.find();
+});
 
 
 

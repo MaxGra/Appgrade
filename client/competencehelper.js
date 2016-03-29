@@ -102,7 +102,6 @@ Template.competenceModalTemplate.events({
                 });
         
         
-        console.log(selectedCompetence,desc,points);
     },
     "click .delall": function(event){
         $('#delcompetenceModal').modal('show');
@@ -155,11 +154,9 @@ Template.competenceModalTemplate.events({
 
 Template.delcompetenceModalTemplate.events({
     "click .delcomp":function(){
-        console.log('del');
         var selectedCompetence = Session.get('selectedCompetence');
         selectedCompetence = Number(selectedCompetence);
         var test = descriptor.select("descriptorid").where("competencecompetenceid = ?",selectedCompetence).fetch();
-        console.log(test);
         for(var i =0; i < test.length; i++){
             var descid = test[i].descriptorid;
             Meteor.call('deleteallstudentdata',descid, function(error,result){
