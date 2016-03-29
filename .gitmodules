@@ -1,0 +1,3 @@
+[submodule "packages/meteor-file"]
+	path = packages/meteor-file
+	url = https://github.com/EventedMind/meteor-file.git

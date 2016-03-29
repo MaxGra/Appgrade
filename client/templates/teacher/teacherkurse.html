@@ -1,45 +1,28 @@
 <template name="teacherkurse">
-    <h1>Daten</h1>
+    <h1 style="text-align: center;">Meine Kurse</h1>
     <div>
-
-        <ul>
-            {{ #each competence }}
-            <li>{{competencedesc}}</li>
-            {{ /each }}
-        </ul>
-        
-<!--
-        <ul>
-            {{ #each descriptor }}
-            <li>{{descriptordesc}}</li>
-            {{ /each }}
-        </ul>
--->
-<!--
-        <ul>
-            {{ #each dataset }}
-            <li>{{yearsdesc}} , {{ subjectdesc }}</li>
-            {{ /each }}
-        </ul>
--->
-<!--
-        <form class="showyears">
-        <select name="selectedyears">
-            {{ #each years }}
-            <option value="{{ yearsdesc }}">{{ yearsdesc }}</option>
-            {{ /each }}
-        </select>
-        <select name="selectedsubject">
-            {{ #each subject }}
-            <option value="{{ subjectdesc }}">{{ subjectdesc }}</option>
-            {{ /each }}
-        </select>
-        <select name="selectedths">
-            {{ #each teacherhassubject }}
-            <option value="{{ userid }}">{{ userid }}</option>
-            {{ /each }}
-        </select>
-        </form>
--->
     </div>
+    
+    {{ #each dataset }} 
+    <div class="panel course">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-10">
+						<span class="course-title">{{ subjectdesc }}</span>
+						
+<!--						<span class="course-trainer">TrainerIn: Vorname NACHNAME</span>-->
+					</div>
+					<div class="col-md-2">
+                        {{#each classes}}
+						<a href="/kurse/{{../subjectid}}/{{classid}}">
+                            <span class="course-class">Klasse: {{ classdesc }}</span>
+                        </a>
+						{{/each}}
+						<span class="course-vintage">Jahrgang: {{yearsdesc}}</span>
+					</div>
+				</div>
+			</div>
+		</div>
+    {{ /each }}
+    
 </template>

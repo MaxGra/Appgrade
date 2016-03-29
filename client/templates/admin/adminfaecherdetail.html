@@ -1,0 +1,84 @@
+<template name="adminfaecherdetail">
+    <br />
+    <br />
+    <button type="button" style="margin-left:3em;" class="btn btn-default ag_button_white glyphicon glyphicon-chevron-left back"></button>
+    <br />
+    <br />
+    
+    
+<div id="content">    
+    <div class="panel ag-control-panel">
+				<div class="childs-inline-block">
+                    {{#each subjectinfo}}
+					<input type="textfield" class="form-control width-70 subdesc" value="{{subjectdesc}}"/>
+					<select name="" size="" class="form-control select-dropdown width-20 pull-right subyear">
+                            <option selected data-yearsid="{{yearsyearsid}}">{{yearsdesc}}</option>
+                        {{#each years}}
+
+                            <option data-yearsid="{{yearsid}}">{{yearsdesc}}</option>
+
+                        {{/each}}
+					</select>
+                    {{/each}}
+				</div>
+				<button class="btn ag_button-success safedesc">Speichern</button>
+			</div>
+
+    <br />
+    <div id="container_students" class="panel">
+			<table>
+				<tr>
+					<th>
+						<h4>Trainer für diesen Kurs:</h4>
+					</th>
+					<th>
+					</th>
+					<th>
+						<h4>Alle Lehrer:</h4>
+					</th>
+				</tr>
+				<tr>
+					<td>
+						<div id="teacherlist_class" class="studentlist">
+							<ul>
+                                {{#each subjectteachers}}
+								<li class="nonactiveListItem" data-id="{{userid}}">
+									<p class="name">
+										{{lastname}} {{firstname}}
+										
+									</p>
+									<hr/>
+								</li>
+                                {{/each}}
+							</ul>
+						</div>
+					</td>
+					<td>
+						<button type="button" id="button_studentlist_left" class="btn switch">
+							<span class="glyphicon glyphicon-arrow-left"></span>
+						</button>
+					</td>
+					<td>
+						<div id="teacherlist_all" class="studentlist">
+							<ul>
+								{{#each allteachers}}
+								<li class="nonactiveListItem" data-id="{{_id}}">
+									<p class="name">
+                                        {{lastName}} {{firstName}}
+                                        
+                                       
+									</p>
+									<hr/>
+								</li>
+                                {{/each}}
+							</ul>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<div id="studentlist_controllpanel">
+				<button type="button" class="btn ag_button-cancel deleteteacher">Trainer entfernen</button>
+			</div>
+		</div>
+    </div>
+</template>

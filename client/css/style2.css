@@ -40,7 +40,7 @@ th span {
 	width: 90%;
 	max-width: 600px;
 	
-	background-color: #ffffff;
+	/*background-color: #ffffff;*/
 	
 	margin: auto;
 	
@@ -77,9 +77,49 @@ th span {
 	
 	z-index: 10 !important;
 }
+
+#panel_classes {
+	width: 90%;
+	
+	margin: auto;
+	padding: 30px;
+	
+	/*
+	position: relative;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+ 	transform: translateY(-50%);
+ 	*/
+}
+
+/* list with all classes */
+#classes {
+	width: 80%;
+	height: auto;
+	
+	border-style: solid;
+	border-width: 1px 1px 1px 1px;
+	border-color: #d0d0d0;
+	
+	border-radius: 5px;
+	
+	margin: auto;
+}
+
+	/* fit table into container - remove space */
+	#classes table {
+		margin: 0px;
+		padding: 0px;
+		
+	}
+	
+	/* fix border when hovering */
+	#classes table tr:last-child:hover *{
+		border-radius: 5px;
+	}
 	
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
-
 
 
 
@@ -182,6 +222,17 @@ th span {
 	margin-right: 10px;
 }
 
+
+.container_classes_buttons {
+	width: 60%;
+	margin: auto;
+}
+
+	.container_classes_buttons * {
+		margin: 0px 10px 5px 0px;
+	}
+
+
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
 	
 	
@@ -243,6 +294,31 @@ th span {
 		color: #ffffff;
 		background-color: #b90000;
 	}
+	
+	
+.ag_button_alt {
+	border-radius: 5px;
+	
+	color: #ffffff;
+	background-color: #b90000;
+}
+
+	.ag_button_alt:hover {
+		color: #ffffff;
+		background-color: rgba(186, 0, 0, 0.83);
+	}
+
+.ag_button-success {
+	background-color: #44ab00;
+	color: #ffffff
+}	
+
+.ag_button-cancel {
+	background-color: #cc0000;
+	color: #ffffff
+}
+
+
 	
 /* textfield style */
 .ag_textfield {
@@ -343,3 +419,599 @@ th span {
 }
 
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+/*	CLASS-LIST */
+
+/* list with subjects and grades for student view - should be renamed to 'subject-list' */
+#class-list {
+	width: 80%;
+	padding-bottom: 50px;
+	margin: auto;
+}
+
+.list-group-item {
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+	
+#container_classview {
+	/*
+	border-style: solid;
+	border-width: 1px 1px 1px 1px;
+	border-color: #d0d0d0; 
+	*/
+	width: 80%;
+	margin: auto;
+	padding-bottom: 50px;
+}
+
+#classview {
+	width: 100%;
+	
+	margin: auto;
+}
+
+	#classview tr {
+		border-style: solid;
+		border-width: 1px 1px 1px 1px;
+		border-color: #d0d0d0; 
+		
+		background: rgba(255, 255, 255, 1.0);
+	}
+	
+		#classview tr:hover {
+			background: rgba(245, 245, 245, 0.7);
+		}
+	
+	#classview td {
+		padding: 15px;
+		
+		text-align: left;
+	}
+	
+	
+.competence_title {
+	text-align: center;
+	
+	/*
+	background: #b90000;
+	color: #ffffff;
+	*/
+}
+
+
+.classview_points {
+	float: right;
+}
+
+.classview_competence {
+	
+}
+
+.classview_descriptor {
+	text-align: left;
+}
+
+.descriptor_description {
+	display: block;
+}
+
+.center {
+	text-align: center;
+	margin: auto;
+}
+
+.assessment_inp_points {
+ width: 50px;
+}
+
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+
+
+
+
+
+
+
+
+
+
+
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+/* ADD STUDENT TO CLASS */
+
+#container_students {
+	width: 90%;
+	margin: auto;
+}
+
+#container_students table {
+	width: 100%;
+	background-color: #ffffff;
+	margin: auto;
+}
+
+	#container_students tr th h4 {
+		background-color: #ffffff;
+		padding: 10px 10px 10px 10px;
+	}
+
+.studentlist {
+	height: 300px;
+	overflow-y: scroll;
+	
+	background-color: #ffffff;
+}
+
+.studentlist ul {
+	text-align:left;
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+}
+	
+	.studentlist li {
+		/*
+		border-style: solid;
+		border-width: 5px;
+		border-color: #ffffff;
+		*/
+		
+		text-align:left;
+		list-style-type: none;
+		margin: 0px;
+	}
+	
+		.studentlist li p {	
+			text-align:left;
+			list-style-type: none;
+			margin: 0px;
+			padding: 20px 50px 20px 20px;
+		}
+	
+	.studentlist li:hover {
+		/*
+		border-style: solid;
+		border-width: 5px;
+		border-color: #45b2ff;
+		*/
+		
+		background-color: #efefef;
+	}
+	
+	.studentlist hr {
+		width: 95%;
+		margin: auto;
+	}
+	
+.activeListItem {
+	border-style: solid;
+	border-width: 5px;
+	border-color: #cdcdcd;
+}
+
+.nonactiveListItem {
+	border-style: solid;
+	border-width: 5px;
+	border-color: #ffffff;
+}
+
+#studentlist_header {
+	background-color: #ffffff;
+}
+
+#studentlist_header div {
+	display: inline;
+}
+
+.conainer_studentlist {
+	width: 50%;
+	background-color: #ffffff;
+}
+
+
+.conainer_studentlist h4 {
+	margin: 20px;
+}
+
+#studentlist_controllpanel {
+	width: 100%;
+	background-color: #ffffff;
+	
+	clear:both;
+	padding: 20px;
+	margin: auto;
+}
+
+	#studentlist_controllpanel button{
+		margin: 10px;
+	}
+
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+/* KURSLISTE */
+
+
+.course {
+	border-style: solid;
+	border-width: 1px 1px 1px 1px;
+	border-color: #d0d0d0; 
+		
+	width: 90%;
+	max-width: 800px;
+	border-radius: 5px;
+	
+	background-color: #ffffff;
+	
+	padding: 20px 10px 20px 10px;
+	margin: auto;
+	margin-bottom: 30px;
+}
+
+	.course span {
+		display: block;
+	}
+
+.course-title {
+	font-size: 20px;
+	margin-bottom: 10px;
+}
+
+
+
+
+
+
+
+
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+
+
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+/* ADD STUDENT TO CLASS */
+
+#container_students {
+	width: 90%;
+	margin: auto;
+}
+
+#container_students table {
+	width: 100%;
+	background-color: #ffffff;
+	margin: auto;
+}
+
+	#container_students tr th h4 {
+		background-color: #ffffff;
+		padding: 10px 10px 10px 10px;
+	}
+
+.studentlist {
+	height: 300px;
+	overflow-y: scroll;
+	
+	background-color: #ffffff;
+}
+
+.studentlist ul {
+	text-align:left;
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+}
+	
+	.studentlist li {
+		text-align:left;
+		list-style-type: none;
+		margin: 0px;
+	}
+	
+		.studentlist li p {	
+			text-align:left;
+			list-style-type: none;
+			margin: 0px;
+			padding: 20px 50px 20px 20px;
+		}
+	
+	.studentlist li:hover {
+		background-color: #efefef;
+	}
+	
+	.studentlist hr {
+		width: 95%;
+		margin: auto;
+	}
+
+.studentlist-all-selected li {
+    background-color: #;
+}
+
+#studentlist_header {
+	background-color: #ffffff;
+}
+
+#studentlist_header div {
+	display: inline;
+}
+
+.conainer_studentlist {
+	width: 50%;
+	background-color: #ffffff;
+}
+
+
+.conainer_studentlist h4 {
+	margin: 20px;
+}
+
+#studentlist_controllpanel {
+	width: 100%;
+	background-color: #ffffff;
+	
+	clear:both;
+	padding: 20px;
+	margin: auto;
+}
+
+	#studentlist_controllpanel button{
+		margin: 10px;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+
+
+
+
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+/*	GRADEVIEW */
+#class-list {
+	width: 90%;
+	margin: auto;
+}
+
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+
+
+
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+/*	CLASS-LIST */
+
+
+.list-group-item {
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+
+#container_pointlist {
+	width: 90%;
+	margin: auto;
+}
+
+.pointlist {
+	width: 100%;
+	margin: auto;
+	margin: 50px 0px 50px 0px;
+	
+}
+
+.ag_list-group-header {
+	font-size: 13pt;
+	font-weight: bold;
+}
+
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+
+
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+/* error*/
+
+.error_container {
+	min-width: 250px;
+	max-width: 450px;
+	
+	clear: both;
+	
+	padding: 30px 30px 0px 30px;
+	margin: auto;
+}
+
+.error {
+	border-style: solid;
+	border-color: #7f7f7f;
+	border-width: 4px;
+	
+	width: 100%;
+	
+	background-color: #ffffff;
+	
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	
+	position: relative;
+	display:inline-block;
+	
+	padding: 20px;
+	margin: auto;
+}
+
+.error:after {
+	content: "";
+	position: absolute;
+	bottom: -15px;
+	left: 60%;
+	border-style: solid;
+	border-width: 15px 15px 0;
+	border-color: #FFFFFF transparent;
+	display: block;
+	width: 0;
+	z-index: 1;
+}
+
+.error:before {
+	content: "";
+	position: absolute;
+	bottom: -19.5px;
+	left: calc(60% - 3px) ;
+	border-style: solid;
+	border-width: 18px 18px 0;
+	border-color: #7F7F7F transparent;
+	display: block;
+	width: 0;
+	z-index: 0;
+}
+
+#error_character {
+	width: 300px;
+	margin: auto;
+}
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+
+.errormsg {
+    border-radius: 25px;
+}
+
+.container_admin {
+	width: 90%;
+	margin: auto;
+    padding: 10px 10px 10px 10px;
+}
+
+.btn-file {
+        position: relative;
+        overflow: hidden;
+    }
+
+.btn-file input[type=file] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        min-width: 100%;
+        min-height: 100%;
+        font-size: 100px;
+        text-align: right;
+        filter: alpha(opacity=0);
+        opacity: 0;
+        outline: none;
+        cursor: inherit;
+        display: block;
+    }
+.downloadbutton{
+  color: black;
+  text-decoration: none; /* no underline */
+}
+
+.downloadbutton:hover{
+  color: #b90000;
+  text-decoration: none; /* no underline */
+}
+
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+/* Subjectview */
+
+#content {
+	width: 90%;
+	margin: auto;
+}
+
+	#content>* {
+		max-width: 1500px;
+		margin: auto;
+	}
+
+#container_subjectview {
+	margin-top: 20px;
+}
+
+.ag-control-panel {
+	padding: 20px;
+}
+
+	.ag-control-panel > * {
+		margin: 10px 0px 10px 0px;
+	}
+
+.margin-20 {
+	span:20px;
+}
+
+.childs-inline-block > * {
+	display: inline;
+}
+
+.width-70 {
+	width:60%;
+    height: auto;
+}
+
+.width-20 {
+	width: 30%;
+    height: auto;
+}
+
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+
+
+

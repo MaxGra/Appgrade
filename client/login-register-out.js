@@ -6,13 +6,12 @@ Template.login.events({
         Meteor.loginWithPassword(userVar, passwordVar,function(error){
                 if(error){
                     console.log(error.reason);
+                    $('.errormsg').removeClass("hide");
+                    $('.errormsg').text(error.reason);
                 } else {
-                    if(Meteor.user().isAdmin == true){
-                        Router.go("mainteacher");
-                    }
-                    if(Meteor.user().isAdmin == false){
-                        Router.go("mainstudent");
-                    }
+                    
+                    Router.go("main");
+                    
                 }
         });
     }

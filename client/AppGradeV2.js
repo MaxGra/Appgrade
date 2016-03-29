@@ -26,10 +26,10 @@ studenthasdescriptor = new SQL.Collection('studenthasdescriptor', 'postgres://po
 
     var subjectTable = {
         subjectid: ['$number'],
-        yearsyearid: ['$number'],
-        subjectdesc: ['$string', '$notnull']/*,
+        yearsyearsid: ['$number'],
+        subjectdesc: ['$string', '$notnull'],
         yearsid: ['$number'],
-        yearsdesc: ['$string', '$notnull']*/
+        yearsdesc: ['$string', '$notnull']
     };
 
     var teacherhassubjectTable  = {
@@ -44,19 +44,21 @@ studenthasdescriptor = new SQL.Collection('studenthasdescriptor', 'postgres://po
         competencedesc: ['$string', '$notnull'],
         pointsmax: ['$number']
     };
-//
-//    var descriptorTable = {
-//        descriptorid: ['$number'],
-//        competencecompetenceid: ['$number'],
-//        descriptordesc: ['$string', '$notnull'],
-//        pointsmax: ['$number']
-//    };
-//
-//    var classTable = {
-//        classid: ['$number'],
-//        yearsyearid: ['$number'],
-//        classdesc: ['$string', '$notnull']
-//    };
+
+    var descriptorTable = {
+        descriptorid: ['$number'],
+        competencecompetenceid: ['$number'],
+        descriptordesc: ['$string', '$notnull'],
+        pointsmax: ['$number']
+    };
+
+    var classTable = {
+        classid: ['$number'],
+        yearsyearsid: ['$number'],
+        classdesc: ['$string', '$notnull'],
+        yearsid: ['$number'],
+        yearsdesc: ['$string', '$notnull']
+   };
 
 //    var teacherhassubjectTable = {
 //        teacherhassubjectid: ['$number'],
@@ -64,11 +66,11 @@ studenthasdescriptor = new SQL.Collection('studenthasdescriptor', 'postgres://po
 //        userid: ['$string', '$notnull']
 //    };
 
-//    var studenthasclassTable = {
-//        studenthasclassid: ['$number'],
-//        classclassid: ['$number'],
-//        userid: ['$string', '$notnull']
-//    };
+    var studenthasclassTable = {
+        studenthasclassid: ['$number'],
+        classclassid: ['$number'],
+        userid: ['$string', '$notnull']
+    };
 //
 //    var studenthascompetenceTable = {
 //        studenthascompetenceid: ['$number'],
@@ -77,12 +79,12 @@ studenthasdescriptor = new SQL.Collection('studenthasdescriptor', 'postgres://po
 //        pointserached: ['$number']
 //    };
 //
-//    var studenthasdescriptorTable = {
-//        studenthasdescriptorid: ['$number'],
-//        descriptordescriptorid: ['$number'],
-//        userid: ['$string', '$notnull'],
-//        pointserached: ['$number']
-//    };
+    var studenthasdescriptorTable = {
+        studenthasdescriptorid: ['$number'],
+        descriptordescriptorid: ['$number'],
+        userid: ['$string', '$notnull'],
+        pointsreached: ['$number']
+    };
 
 //_______________________________________________
 
@@ -95,17 +97,17 @@ studenthasdescriptor = new SQL.Collection('studenthasdescriptor', 'postgres://po
 
     competence.createTable(competenceTable);
 //
-//    descriptor.createTable(descriptorTable);
+  descriptor.createTable(descriptorTable);
 //
-//    classes.createTable(classTable);
+    classes.createTable(classTable);
 
 //    teacherhassubject.createTable(teacherhassubjectTable);
 
-//    studenthasclass.createTable(studenthasclassTable);
+studenthasclass.createTable(studenthasclassTable);
 //
 //    studenthascompetence.createTable(studenthascompetenceTable);
 //
-//    studenthasdescriptor.createTable(studenthasdescriptorTable);
+ studenthasdescriptor.createTable(studenthasdescriptorTable);
 
 
 
@@ -113,71 +115,12 @@ studenthasdescriptor = new SQL.Collection('studenthasdescriptor', 'postgres://po
 
 
 
-  Template.test.helpers({
-    usernames: function () {
-      return username.select().fetch();
-    },
-      subjects: function() {
-          return subject.select().fetch();
-    } /*,
-    tasks: function () {
-      if (newUser === 'all'){
-          return tasks.select('tasks.id', 'tasks.text', 'tasks.checked', 'tasks.created_at', 'username.name')
-            .join(['OUTER JOIN'], ['usernameid'], [['username', ['id']]])
-            .fetch();
-      }
-      else {
-        return tasks.select('id', 'text', 'checked', 'username.name')
-          //.join(['OUTER JOIN'], ['usernameid'], [['username', ['id']]])
-         // .where("name = ?", newUser)
-          .fetch();
-      }
-    }*/
-  });
 
 
-  Template.test.events({
-    "submit .new-task": function (event) {
-      if (event.target.category.value){
-        var user = username.select()
-                     .where("name = ?", event.target.category.value)
-                     .fetch();
-        user = user[0].id;
-        var text = event.target.text.value;
-        tasks.insert({
-          text:text,
-          checked:false,
-          usernameid: user
-        }).save();
-        event.target.text.value = "";
-      } else{
-        alert("please add a user first");
-      }
-      return false;
-    },
-    "submit .new-user": function (event) {
-      var text = event.target.text.value;
-      username.insert({
-        name:text
-      }).save();
-      event.target.text.value = "";
 
-      return false;
-    },
-    "click .toggle-checked": function () {
-      tasks.update({id: this.id, "checked": !this.checked})
-           .where("id = ?", this.id)
-           .save();
-    },
-    "click .delete": function () {
-      tasks.remove()
-           .where("id = ?", this.id)
-           .save();
-    },
-    "change .catselect": function(event){
-      newUser = event.target.value;
-      tasks.reactiveData.changed();
-    }
-  });
+Tracker.autorun(function () {
+    Meteor.subscribe("userData");
+});
+
 
 

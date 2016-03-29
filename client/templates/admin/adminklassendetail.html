@@ -1,0 +1,62 @@
+<template name="adminklassendetail">
+    <br />
+    <br />
+    <button type="button" style="margin-left:3em;" class="btn btn-default ag_button_white glyphicon glyphicon-chevron-left back"></button>
+    <br />
+    <br />
+    <div id="container_students" class="panel">
+			<table>
+				<tr>
+					<th>
+						<h4>Angemeldete Schüler:</h4>
+					</th>
+					<th>
+					</th>
+					<th>
+						<h4>Alle Schüler:</h4>
+					</th>
+				</tr>
+				<tr>
+					<td>
+						<div id="studenlist_class" class="studentlist">
+							<ul>
+                                {{#each classstudents}}
+								<li class="nonactiveListItem" data-id="{{userid}}">
+									<p class="name">
+										{{lastname}} {{firstname}}
+										
+									</p>
+									<hr/>
+								</li>
+                                {{/each}}
+							</ul>
+						</div>
+					</td>
+					<td>
+						<button type="button" id="button_studentlist_left" class="btn switch">
+							<span class="glyphicon glyphicon-arrow-left"></span>
+						</button>
+					</td>
+					<td>
+						<div id="studenlist_all" class="studentlist">
+							<ul>
+								{{#each allstudents}}
+								<li class="nonactiveListItem" data-id="{{_id}}">
+									<p class="name">
+                                        {{lastName}} {{firstName}}
+                                        
+                                       
+									</p>
+									<hr/>
+								</li>
+                                {{/each}}
+							</ul>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<div id="studentlist_controllpanel">
+				<button type="button" class="btn ag_button-cancel deletestudent">Schüler aus Klasse entfernen</button>
+			</div>
+		</div>
+</template>
