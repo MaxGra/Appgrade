@@ -1,6 +1,5 @@
 Template.studenttable.helpers({
     subjects: function () {
-        console.log("test");
         
         var id = Meteor.userId();
         var studhasclassdat = studenthasclass.select()
@@ -12,11 +11,9 @@ Template.studenttable.helpers({
         var classesdat = classes.select().where('classid = ?',classid).fetch();
         var yearsid = classesdat[0].yearsyearsid;
         yearsid = Number(yearsid);
-        console.log(yearsid); 
         
         var data = subject.select().where('yearsyearsid = ?',yearsid).fetch();
         
-        console.log(data);
         
         return data;
     }
@@ -24,7 +21,6 @@ Template.studenttable.helpers({
 
 Template.studentsubject.helpers({
     dataset: function(){
-        console.log(this);
         return this;
     }
 });
@@ -45,5 +41,13 @@ Template.studentsubject.events({
     },
     "click .refresh": function(){
         Meteor._reload.reload(); 
+    },
+    "click .upload": function(event){
+        $('#uploadModal').modal('show');
+        var descid = event.target.getAttribute('data-descid');
+        var descdesc = event.target.getAttribute('data-descdesc');
+        descid = Number(descid);
+        Session.set('selectedDesc',descid);
+        Session.set('selectedDescName',descdesc);
     }
 });

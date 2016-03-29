@@ -72,39 +72,16 @@
 								<img src="/avatars/avatar.jpg" class="avatar" width="80" height="80"/>{{student.lastName}} {{student.firstName}}
 							</td>
                             
-<!--
-							<td class="success">
-								40/40
-								<div class="timeline">
-								</div>
-								<span class="glyphicon glyphicon-plus span_clickable" data-toggle="tooltip" data-placement="top" title="positive Mitarbeit hinzufügen"></span>
-								<span class="glyphicon glyphicon-minus span_clickable" data-toggle="tooltip" data-placement="top" title="negative Mitarbeit hinzufügen"></span>
-							</td>
-							<td class="warning">
-								30/40
-								<div class="timeline">
-								</div>
-								<span class="glyphicon glyphicon-plus span_clickable" data-toggle="tooltip" data-placement="top" title="positive Mitarbeit hinzufügen"></span>
-								<span class="glyphicon glyphicon-minus span_clickable" data-toggle="tooltip" data-placement="top" title="negative Mitarbeit hinzufügen"></span>
-							</td>
-							<td class="danger">
-								10/20
-								<div class="timeline">
-								</div>
-								<span class="glyphicon glyphicon-plus span_clickable" data-toggle="tooltip" data-placement="top" title="positive Mitarbeit hinzufügen"></span>
-								<span class="glyphicon glyphicon-minus span_clickable" data-toggle="tooltip" data-placement="top" title="negative Mitarbeit hinzufügen"></span>
-							</td>
--->
-                            
                             {{#each competencesdata}}
                                 {{#each descriptorsdata}}
                                     <td class="{{status}}">
 <!--                                        <p style="display:inline;" class="pointsval">{{pointsreached}}</p>/<p style="display:inline;" class="pointsmax">{{pointsmax}}</p>-->
                                         <input type="number" class="assessment_inp_points pointsval" min="0" max="{{pointsmax}}" value="{{pointsreached}}" data-userid="{{../../student._id}}" data-descid="{{descriptorid}}" data-studhasdescid="{{studhasdescid}}"/>/<p style="display:inline;" class="pointsmax">{{pointsmax}}</p>
-                                        <div class="timeline">
+                                        <div >
                                         </div>
                                         <span class="glyphicon glyphicon-plus span_clickable pluspoints" data-userid="{{../../student._id}}" data-descid="{{descriptorid}}"  data-studhasdescid="{{studhasdescid}}" title="positive Mitarbeit hinzufügen"></span>
                                         <span class="glyphicon glyphicon-minus span_clickable minuspoints" data-userid="{{../../student._id}}" data-studhasdescid="{{studhasdescid}}" title="negative Mitarbeit hinzufügen"></span>
+                                        <span class="glyphicon glyphicon-file span_clickable abgaben" data-userid="{{../../student._id}}" data-descid="{{descriptorid}}" data-descname="{{descriptordesc}}" title="Abgaben ansehen"></span>
                                     </td>
                                 {{/each}}
                             {{/each}}
@@ -117,5 +94,7 @@
 			</div>
 		</div>
     
+    {{> useruploads}}
     {{> competenceModalTemplate}}
+
 </template>

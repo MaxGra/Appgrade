@@ -19,13 +19,9 @@
                 
 				<a href="#" class="list-group-item list-group-item-{{status}}">
 					{{descriptordesc}}
+
 					<span class="pull-right">{{pointsreached}}/{{pointsmax}}</span>
-					
-<!--
-					<span class="descriptor_description">
-						Lorem Ipsum ................
-					</span>
--->
+				    <span class="pull-right glyphicon glyphicon-upload upload" data-descid="{{descriptorid}}" data-descdesc="{{descriptordesc}}"></span>
 				</a>
                 
                 {{/each}}
@@ -33,4 +29,5 @@
             
             {{/each}}
 		</div>
+    {{> uploadModal}}
 </template>

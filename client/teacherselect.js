@@ -15,7 +15,6 @@ Template.teacherselect.events({
         var id = subject.insert({
           subjectdesc:subjectname
         }).save();
-        console.log('id',id);
         
         var classselect = classes.select().where("classdesc = ?", selectedclass).fetch();
         

@@ -15,7 +15,6 @@ Template.teachertable.events({
         var selectedcomp = event.target.getAttribute('data-compid')
         Session.set('selectedCompetence', selectedcomp);
         
-        console.log(selectedcomp);
         
         $('#competenceModal').modal('show');
     },
@@ -105,6 +104,16 @@ Template.teachertable.events({
                 }).where("studenthasdescriptorid = ?",studhasdescid).save();
             }
         }
+    },
+    "click .abgaben":function(event){
+        var descdesc = event.target.getAttribute('data-descname');
+        var descid = event.target.getAttribute('data-descid');
+        descid= Number(descid);
+        var userid = event.target.getAttribute('data-userid');
+        Session.set('selectedDescId',descid);
+        Session.set('selectedDescName',descdesc);
+        Session.set('userid',userid);
+        $('#useruploads').modal('show');
     }
 });
 

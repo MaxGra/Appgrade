@@ -1,0 +1,109 @@
+<!--
+<template name="studentupload">
+<input class="your-upload-class" type="file">
+
+  <table class="table table-condensed">
+        <tbody>
+        {{#each theFiles}}
+        <tr>
+    <td>{{uploadedAt}}</td><td>{{original.name}}</td><td><a
+ href="{{url}}">link</a></td><td>{{#if 
+isUploaded}}uploaded{{/if}}</td><td><button 
+id="deleteFileButton">delete</button></td>
+        </tr>
+        {{/each}}
+        </tbody>
+      </table>
+</template>
+-->
+
+<template name="uploadModal">
+    
+    
+    <div class="modal fade" id="uploadModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h3 class="modal-title">Abgaben für Deskriptor: {{descriptor}}</h3>
+        </div>
+
+        <div class="modal-body">
+            
+            <h4>Abgaben:</h4>
+				<table class="table table-bordered table-hover">
+					<thead>
+						<tr>
+							<th>
+								Nr.
+							</th>
+							<th>
+								Dateiname
+							</th>
+<!--
+							<th>
+								Deadline
+							</th>
+-->
+							<th>
+								Status
+							</th>
+							<th>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+                        {{#each theFiles}}
+						<tr>
+							<td>
+								{{@index}}
+							</td>
+							<td>
+								<span>{{original.name}}</span>
+							</td>
+<!--
+							<td>
+								<span class="mode_normal">30.01.2015</span>
+								<input type="date" class="form-control mode_edit">
+							</td>
+-->
+							<td>
+								<span>{{#if isUploaded}}uploaded{{/if}}</span>
+							</td>
+							<td>
+                                <span id="deleteFileButton" class="glyphicon glyphicon-trash"></span>
+                                <a href="{{this.url download=true}}" class="downloadbutton"  target="_parent"><span class="glyphicon glyphicon-download-alt"></span></a>
+							</td>
+						</tr>
+                        {{/each}}
+					</tbody>
+				</table>
+			
+
+            <div class="col-md-12">
+                <div class="col-md-8">
+                    <div class="input-group">
+                        <span class="btn btn-primary btn-file input-group-addon">
+                        Dateien auswählen<input class="your-upload-class" type="file">
+                        </span>
+                         <input type="text" class="form-control uploadname" disabled>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <br />
+          </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Schließen</button>
+        </div>
+
+      
+    </div>
+  </div>
+    </div>
+    
+    
+    
+    
+</template>
+
